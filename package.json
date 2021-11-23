@@ -1,5 +1,5 @@
 {
-  "name": "PhotographerPhinder",
+  "name": "photographerphinder",
   "version": "1.0.0",
   "description": "## Basic Server Setup 1. `touch server.js` 2. `npm init -y` 3. `npm install express mongoose`",
   "main": "server.js",
@@ -13,6 +13,7 @@
   "license": "ISC",
   "homepage": "",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.11.17"

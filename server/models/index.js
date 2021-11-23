@@ -1,4 +1,4 @@
-module.exports = {
-    Restaurant: require("./restaurant")
-  };
+const Photographer = require('./Photographer');
+
+module.exports = { Photographer };
   

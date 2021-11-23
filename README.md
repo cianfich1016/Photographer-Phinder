@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# fsf-ft-11-MERN-starter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic Server Setup
 
-## Available Scripts
+1. `touch server.js`
+2. `npm init -y`
+3. `npm install express mongoose`
 
-In the project directory, you can run:
+## Build the Express App
 
-### `npm start`
+1. Require express
+2. Create an instance of express
+3. Set the server PORT to 3001
+4. Listen to the PORT
+5. Add middleware
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+6. Add routes
 
-### `npm test`
+**_Great time to test your server using Postman_**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Add MongoDB/Monoose to the Server
 
-### `npm run build`
+1. Require mongoose in the server.
+2. Setup the mongoose connection
+3. Add mongoose config object to the .connect method
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Add promise .then and .catch for Mongoose connection
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Add React to the App
 
-### `npm run eject`
+1. `npx create-react-app client`
+2. Add scripts in server package.json
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. `npm install if-env`
+4. `npm install concurrently nodemon -D`
+5. In the client package.json add a proxy:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```javascript
+"proxy": "http://localhost:3001",
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Deploy to Heroku
 
-## Learn More
+1. `git add .` -> `git commit -m `
+2. `heroku create`
+3. Add three more scripts to server package.json
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+``` javascript
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Add express static to server up the build folder.
 
-### Code Splitting
+``` javascript
+app.use(express.static("client/build"));
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Add a wildcard route to serve up the client index.html
+6. `git push heroku main`
+7. Add MONGODB_URI env var in Heroku Settings.

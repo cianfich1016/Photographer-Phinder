@@ -1,5 +1,5 @@
 {
-  "name": "PhotographerPhinder",
+  "name": "photographerphinder",
   "version": "1.0.0",
   "description": "## Basic Server Setup 1. `touch server.js` 2. `npm init -y` 3. `npm install express mongoose`",
   "main": "server.js",

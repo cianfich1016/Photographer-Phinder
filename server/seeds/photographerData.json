@@ -1,0 +1,36 @@
+[
+    {
+      "username": "simplyclass",
+      "email": "simplyclass@test.com",
+      "password": "ilovephotos",
+      "compnayName": "Simply Class Photography",
+      "bio": "Hello! My name is Amy Olson, and I grew up in a small town in Southeastern Minnesota. I currently live just north of Rochester, Minnesota with my husband. My passion for photography began at a young age when I was constantly taking photos of family and friends. I finally made it a career, and after several years of experience in portrait photography, Simply Class was established in 2010. I specialize in natural light photography for all types of sessions including weddings, seniors, families, and newborns. I thrive on the excitement of each event, capturing those perfect and special moments with creativity and class. I offer high-end digital photography and am available nationwide and for destination weddings. Please contact me by phone or email for more information. I'd love to enjoy a cup of coffee with you to discuss details.",
+      "photoType": "Wedding",
+      "location": "Minnesota",
+      "link": "https://simplyclassphotography.smugmug.com/",
+      "reservationCost": 1500
+    },
+    {
+        "username": "petphotosrlife",
+        "email": "bevinge711@gmail.com",
+        "password": "bryanna123",
+        "companyName": "Capture It!",
+        "bio": "Capture It! is a photography company that loves creating lasting memories for you and your beloved pets. Indoors, outdoors, and all around, we travel miles to capture these precious moments. Not afraid of any pets, we welcome all of your loved ones. Feel free to contact us reserve your session today!",
+        "photoType": "Pet",
+        "location": "Georgia",
+        "link": "",
+        "reservationCost": 500
+    },
+    {
+        "firstName": "Test",
+        "lastName": "Subject",
+        "username": "familyphoto",
+        "email": "test@gmail.com",
+        "password": "ilovephotos",
+        "bio": "Test.",
+        "photoType": "Family",
+        "location": "Minnesota",
+        "link": "",
+        "reservationCost": 800
+    }
+  ]

@@ -18,6 +18,10 @@ const photographerSchema = new Schema(
       type: String,
       required: true,
     },
+    companyName:{
+      type: String,
+      required: true,
+    },
     bio: {
       type: Text,
       required: true,
@@ -32,7 +36,6 @@ const photographerSchema = new Schema(
     },
     link: {
       type: String,
-      required: true,
     },
     reservationCost: {
       type: Number,

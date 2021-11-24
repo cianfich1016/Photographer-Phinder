@@ -1,4 +1,4 @@
-const Photographer = require('./Photographer');
+const Photographer = require('./photographer');
 
 module.exports = { Photographer };
   

@@ -49,7 +49,7 @@ const HomePage = () => {
                             m: 1,
                             minWidth: 120,
                         }}>
-                            <h1>Type of Photographer</h1>
+                            <h1>Photographer Type</h1>
                             <InputLabel id="demo-simple-select-helper-label"></InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
@@ -84,7 +84,7 @@ const HomePage = () => {
                         bgcolor: primary,
                     }}>
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
-                            <h1>Search by Location</h1>
+                            <h1>Location by State</h1>
                             <InputLabel id="demo-simple-select-helper-label"></InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
@@ -155,11 +155,15 @@ const HomePage = () => {
                     </Box>
                 </Grid>
             </Grid>
-            {/* <Grid item xs={3}>
-                    <paper>
-                        <img href="/images/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
-                    </paper>
-                </Grid> */}
+            <Grid item xs={12}>
+                <paper>
+                    <div className="imageRow">
+                        <img src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
+                        <img src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
+                        <img src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
+                    </div>
+                </paper>
+            </Grid>
 
             <Grid item xs={12}>
                 <Box sx={{

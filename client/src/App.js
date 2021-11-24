@@ -7,8 +7,7 @@ function App() {
 
   return (
     <div>
-      <HomePage />
-      {/* <header className="App-header">
+      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hello
@@ -21,7 +20,7 @@ function App() {
         >
           Learn React
         </a>
-      </header> */}
+      </header>
     </div>
   );
 }

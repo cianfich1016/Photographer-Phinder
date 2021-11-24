@@ -1,18 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-<<<<<<< HEAD
 import Navbar from "./components/NavBar";
 import HomePage from "./components/Home";
 import Login from "./components/LoginForm";
 import Footer from "./components/Footer";
-=======
 import SearchResults from "./components/SearchResults";
->>>>>>> main
 
 function App() {
   return (
-<<<<<<< HEAD
+    <>
     <Router>
       <Navbar />
       <Switch>
@@ -22,7 +19,6 @@ function App() {
       </Switch>
       <Footer />
     </Router>
-=======
     <div className="App">
       <SearchResults />
       {/* <header className="App-header">
@@ -40,7 +36,7 @@ function App() {
         </a>
       </header> */}
     </div>
->>>>>>> main
+    </>
   );
 }
 

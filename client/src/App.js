@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/NavBar";
-import HomePage from "./pages/Home";
+import HomePage from "./components/Home";
 import Login from "./components/LoginForm";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" component={Login} />
         {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
       </Switch>
+      <Footer />
     </Router>
   );
 }

@@ -65,17 +65,6 @@ export default function PrimarySearchAppBar() {
   //       <MenuItem onClick={handleMenuClose}>SignUp</MenuItem>
   //     </Menu>
   //   );
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -100,7 +89,6 @@ export default function PrimarySearchAppBar() {
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <p>Cart</p>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -110,9 +98,10 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <LoginIcon />
+          <Link href="/login" color="inherit">
+            <LoginIcon />
+          </Link>
         </IconButton>
-        <p>Login</p>
       </MenuItem>
     </Menu>
   );

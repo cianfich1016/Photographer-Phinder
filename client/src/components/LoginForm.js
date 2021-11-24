@@ -17,12 +17,12 @@ import { Input } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
+import Container from "@mui/material/Container";
 
 export default function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
-  //   const [showAlert, setShowAlert] = useState(false);
-
+  //   const [showAlert, setShowAlert] = useState(f
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -77,9 +77,7 @@ export default function Login() {
         alignItems="center"
         justifyContent="center"
         direction="row"
-        color="inherit"
       >
-        {/* <Grid container spacing={0} justify="center" direction="row"> */}
         <Grid item>
           <Grid
             container
@@ -89,7 +87,7 @@ export default function Login() {
             className="login-form"
             color="inherit"
           >
-            <Paper
+            <Container
               variant="elevation"
               elevation={2}
               className="login-background"
@@ -156,7 +154,7 @@ export default function Login() {
                   <Link href="/signup"> Sign Up</Link>
                 </Typography>
               </Grid>
-            </Paper>
+            </Container>
           </Grid>
         </Grid>
       </Grid>

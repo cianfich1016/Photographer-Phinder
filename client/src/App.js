@@ -1,13 +1,13 @@
 
 import logo from "./logo.svg";
 import "./App.css";
-import SearchResults from "./components/pages/SearchResults";
+import SearchResults from "./components/SearchResults";
 
 function App() {
 
   return (
     <div className="App">
-      <SearchResults></SearchResults>
+      <SearchResults />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

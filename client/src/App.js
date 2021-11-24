@@ -1,12 +1,14 @@
 
 import logo from "./logo.svg";
 import "./App.css";
+import HomePage from "./components/home"
 
 function App() {
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <HomePage />
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hello
@@ -19,7 +21,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }

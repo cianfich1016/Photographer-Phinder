@@ -1,4 +1,5 @@
 import React from 'react'
+import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,6 +10,7 @@ import { teal, indigo } from '@mui/material/colors';
 
 
 const primary = indigo[500]
+const primaryLight = indigo[200]
 const primaryDark = indigo[900]
 const secondary = teal[500]
 const secondaryLight = teal[200]
@@ -16,19 +18,24 @@ const secondaryLight = teal[200]
 const SearchResults = (props) => {
 
     return (
-        {
-            props.photographers.map((photographer) =>
-                <Card sx={{ maxWidth: 345 }}>
+        <Container sx={{
+            bgcolor: secondaryLight
+        }}>
+            {
+                // props.photographers.map((photographer) => (
+                <Card sx={{ maxWidth: 345 }} key={photographer.id}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
                             height="140"
-                            image=""
+                            image={photographer.image}
                             alt=""
                         />
-                        <CardContent>
+                        <CardContent sx={{
+                            bgcolor: primaryLight
+                        }}>
                             <Typography gutterBottom variant="h5" component="div">
-
+                                {photographer.business}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -38,9 +45,10 @@ const SearchResults = (props) => {
                         </Button>
                     </CardActions>
                 </Card>
-            )
-        }
+                // ))
+            }
+        </Container>
     )
 }
 
-export default SearchResults
+export default SearchResults;

@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByCategory, findByState } from '../utils/API'
+import SearchResults from './SearchResults';
 
 
 
@@ -20,54 +21,68 @@ const secondary = teal[500]
 const secondaryLight = teal[200]
 
 const HomePage = () => {
-    const [photographers, setPhotographers] = useState([])
-    const [photoType, setPhotoType] = useState('');
-    const [location, setLocation] = useState('');
+    const [photographers, setPhotographers] = useState('');
+    // const [photoType, setPhotoType] = useState('');
+    // const [location, setLocation] = useState('');
 
-    const handleTypeChange = (event) => {
-        setPhotoType(event.target.value);
-        //fetch call and page change
+    const handlePhotographerChange = (event) => {
+        setPhotographers(event.target.value);
     };
-    const handleLocationChange = (event) => {
-        setLocation(event.target.value);
-        //fetch call and page change
-    };
+
+    // const handleLocationChange = (event) => {
+    //     setLocation(event.target.value);
+    //     //fetch call and page change
+    // };
 
     const handleTypeFormSubmit = async (event) => {
         event.preventDefault();
 
-        if (!photoType) {
+        if (!photographers) {
             return false;
         }
 
         try {
-            const response = await findByCategory(photoType);
+            const response = await findByCategory(photographers);
 
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
-            setPhotoType('');
+            setPhotographers('');
         } catch (err) {
             console.error(err);
         }
-    }
+        return (
+            <div>
+                {/* Pass our results to the SearchResults component to map over */}
+                <SearchResults results={[photographers]} />
+            </div>
+        );
+    };
 
     const handleLocationFormSubmit = async (event) => {
-        if (!location) {
+        event.preventDefault();
+
+        if (!photographers) {
             return false;
         }
 
         try {
-            const response = await findByState(photoType);
+            const response = await findByState(photographers);
 
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
-            setLocation('');
+            setPhotographers('');
         } catch (err) {
             console.error(err);
         }
-    }
+        return (
+            <div>
+                {/* Pass our results to the SearchResults component to map over */}
+                <SearchResults results={[photographers]} />
+            </div>
+        );
+    };
 
     // Need eventlistener on button click to make api call and change page?
 
@@ -95,9 +110,9 @@ const HomePage = () => {
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={photoType}
+                                value={photographers}
                                 label="photoType"
-                                onChange={(e) => handleTypeChange(e.target.value)}
+                                onChange={(e) => handlePhotographerChange(e.target.value)}
                             >
                                 <MenuItem value="Type" >
                                     <em>None</em>
@@ -135,9 +150,9 @@ const HomePage = () => {
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={location}
+                                value={photographers}
                                 label="location"
-                                onChange={(e) => handleLocationChange(e.target.value)}
+                                onChange={(e) => handlePhotographerChange(e.target.value)}
                             >
                                 <MenuItem value="Location">
                                     <em>None</em>

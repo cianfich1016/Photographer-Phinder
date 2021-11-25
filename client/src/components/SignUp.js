@@ -3,6 +3,15 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 //this is a post
 
@@ -35,7 +44,7 @@ const photoType = [
     },
 ];
 
-const location = [
+const locations = [
     {
         value: 'Alabama',
         label: 'Alabama',
@@ -234,28 +243,94 @@ const location = [
     },
 ]
 const SignUp = () => {
-    const [photo, setPhoto] = React.useState('Wedding');
 
-    const handleChange = (event) => {
-        setPhoto(event.target.value);
+    const [values, setValues] = React.useState({
+        username: '',
+        email: '',
+        password: '',
+        companyName: '',
+        bio: '',
+        photoType: '',
+        location: '',
+        link: '',
+        reservationCost: '',
+        image: '',
+        showPassword: false,
+    });
+
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
     };
 
-    const [location, setCurrency] = React.useState('EUR');
-
-    const handleChange = (event) => {
-        setCurrency(event.target.value);
+    const handleClickShowPassword = () => {
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
     };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
     return (
-        <Container>
+        <Container sx={{
+            bgcolor: secondaryLight
+        }}>
             <Box
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    display: 'flex',
+                    justifyContent: 'center',
+                    p: 1,
+                    m: 1,
+                    bgcolor: primary,
                 }}
                 noValidate
                 autoComplete="off"
             >
                 <div>
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="UserName Required"
+                        defaultValue="UserName"
+                    />
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Email Required"
+                        defaultValue="Email"
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="Company Name"
+                        variant="outlined"
+                    />
+                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            required
+                            id="outlined-adornment-password"
+                            type={values.showPassword ? 'text' : 'password'}
+                            value={values.password}
+                            onChange={handleChange('password')}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            label="Password"
+                        />
+                    </FormControl>
                     <TextField
                         id="outlined-multiline-static"
                         label="Bio"
@@ -264,33 +339,51 @@ const SignUp = () => {
                         defaultValue="Tell us about you..."
                     />
                     <TextField
-                        id="outlined-select-currency"
+                        id="outlined-select-photo"
                         select
                         label="Select"
-                        value={photoType}
+                        value={values.photoType}
                         onChange={handleChange}
                         helperText="Please select your specialty"
                     >
-                        {photoType.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
+                        {photoType.map((photos) => (
+                            <MenuItem key={photos.value} value={photos.value}>
+                                {photos.label}
                             </MenuItem>
                         ))}
                     </TextField>
                     <TextField
-                        id="outlined-select-currency"
+                        id="outlined-select-location"
                         select
                         label="Select"
-                        value={location}
+                        value={values.location}
                         onChange={handleChange}
                         helperText="Please select your state"
                     >
-                        {location.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
+                        {locations.map((state) => (
+                            <MenuItem key={state.value} value={state.value}>
+                                {state.label}
                             </MenuItem>
                         ))}
                     </TextField>
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Please provide a link to your work"
+                        multiline
+                        rows={4}
+                        defaultValue="www.yourwork.com"
+                    />
+                    <TextField
+                        required
+                        id="outlined-number"
+                        label="Reservation Cost"
+                        type="number"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <p> Please email your images for submission and approval to :<a class="mailto" href="mailto:photographerphinder.com">photographerphinder@gmail.com</a> </p>
+                    <Button variant="contained">Create Your Profile</Button>
                 </div>
             </Box>
         </Container>

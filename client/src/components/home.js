@@ -69,9 +69,12 @@ const HomePage = () => {
                                 <MenuItem value={"Other"}>Other</MenuItem>
                             </Select>
                             <FormHelperText>Photography Type</FormHelperText>
-                            <Button variant="contained" href="######alskdfjslkafhwoiefnw" sx={{
-                                bgcolor: primaryDark,
-                            }}>Search</Button>
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: primaryDark,
+                                }}>
+                                Search <Link href="/searchresults"> </Link>
+                            </Button>
                         </FormControl>
                     </Box>
                 </Grid>
@@ -148,9 +151,12 @@ const HomePage = () => {
                                 <MenuItem value={"Wyoming"}>Wyoming</MenuItem>
                             </Select>
                             <FormHelperText>Location</FormHelperText>
-                            <Button variant="contained" href="####alskdfjslkafhwoiefnw" sx={{
-                                bgcolor: primaryDark,
-                            }}>Search</Button>
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: primaryDark,
+                                }}> Search
+                                <Link href="/searchresults"> </Link>
+                            </Button>
                         </FormControl>
                     </Box>
                 </Grid>

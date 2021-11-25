@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,6 +12,14 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { teal, indigo } from '@mui/material/colors';
+
+
+const primary = indigo[500]
+const primaryLight = indigo[200]
+const primaryDark = indigo[900]
+const secondary = teal[500]
+const secondaryLight = teal[200]
 
 //this is a post
 
@@ -244,7 +252,7 @@ const locations = [
 ]
 const SignUp = () => {
 
-    const [values, setValues] = React.useState({
+    const [values, setValues] = useState({
         username: '',
         email: '',
         password: '',
@@ -383,7 +391,12 @@ const SignUp = () => {
                         }}
                     />
                     <p> Please email your images for submission and approval to :<a class="mailto" href="mailto:photographerphinder.com">photographerphinder@gmail.com</a> </p>
-                    <Button variant="contained">Create Your Profile</Button>
+                    <Button variant="contained"
+                        sx={{
+                            bgcolor: primaryDark,
+                        }}>
+                        <Link href="/profile"> </Link>
+                        Create Your Profile</Button>
                 </div>
             </Box>
         </Container>

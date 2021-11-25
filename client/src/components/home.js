@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
+import { findByCategory, findByState } from '../utils/API'
 
 
 
@@ -19,8 +20,9 @@ const secondary = teal[500]
 const secondaryLight = teal[200]
 
 const HomePage = () => {
-    const [photoType, setPhotoType] = useState('Wedding');
-    const [location, setLocation] = useState('Alabama');
+    const [photographers, setPhotographers] = useState([])
+    const [photoType, setPhotoType] = useState('');
+    const [location, setLocation] = useState('');
 
     const handleTypeChange = (event) => {
         setPhotoType(event.target.value);
@@ -30,6 +32,42 @@ const HomePage = () => {
         setLocation(event.target.value);
         //fetch call and page change
     };
+
+    const handleTypeFormSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!photoType) {
+            return false;
+        }
+
+        try {
+            const response = await findByCategory(photoType);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            setPhotoType('');
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleLocationFormSubmit = async (event) => {
+        if (!location) {
+            return false;
+        }
+
+        try {
+            const response = await findByState(photoType);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            setLocation('');
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     // Need eventlistener on button click to make api call and change page?
 
@@ -46,10 +84,12 @@ const HomePage = () => {
                         m: 1,
                         bgcolor: primary,
                     }}>
-                        <FormControl sx={{
-                            m: 1,
-                            minWidth: 120,
-                        }}>
+                        <FormControl
+                            onSubmit={handleTypeFormSubmit}
+                            sx={{
+                                m: 1,
+                                minWidth: 120,
+                            }}>
                             <h1>Photographer Type</h1>
                             <InputLabel id="demo-simple-select-helper-label"></InputLabel>
                             <Select
@@ -57,7 +97,7 @@ const HomePage = () => {
                                 id="demo-simple-select-helper"
                                 value={photoType}
                                 label="photoType"
-                                onChange={handleTypeChange}
+                                onChange={(e) => handleTypeChange(e.target.value)}
                             >
                                 <MenuItem value="Type" >
                                     <em>None</em>
@@ -87,7 +127,9 @@ const HomePage = () => {
                         m: 1,
                         bgcolor: primary,
                     }}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl
+                            onSubmit={handleLocationFormSubmit}
+                            sx={{ m: 1, minWidth: 120 }}>
                             <h1>Location by State</h1>
                             <InputLabel id="demo-simple-select-helper-label"></InputLabel>
                             <Select
@@ -95,7 +137,7 @@ const HomePage = () => {
                                 id="demo-simple-select-helper"
                                 value={location}
                                 label="location"
-                                onChange={handleLocationChange}
+                                onChange={(e) => handleLocationChange(e.target.value)}
                             >
                                 <MenuItem value="Location">
                                     <em>None</em>

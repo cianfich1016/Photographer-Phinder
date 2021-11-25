@@ -12,6 +12,7 @@ import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByCategory, findByState } from '../utils/API'
 import SearchResults from './SearchResults';
+import { set } from 'mongoose';
 
 
 
@@ -21,12 +22,14 @@ const secondary = teal[500]
 const secondaryLight = teal[200]
 
 const HomePage = () => {
-    const [photographers, setPhotographers] = useState('');
+    const [search, setSearch] = useState('');
     // const [photoType, setPhotoType] = useState('');
     // const [location, setLocation] = useState('');
 
-    const handlePhotographerChange = (event) => {
-        setPhotographers(event.target.value);
+    const [photographers, setPhotographers] = useState([])
+
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value);
     };
 
     // const handleLocationChange = (event) => {
@@ -37,24 +40,25 @@ const HomePage = () => {
     const handleTypeFormSubmit = async (event) => {
         event.preventDefault();
 
-        if (!photographers) {
+        if (!search) {
             return false;
         }
 
         try {
-            const response = await findByCategory(photographers);
+            const response = await findByCategory(search);
 
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
-            setPhotographers('');
+            setPhotographers(response.data);
+            setSearch('');
         } catch (err) {
             console.error(err);
         }
         return (
             <div>
                 {/* Pass our results to the SearchResults component to map over */}
-                <SearchResults results={[photographers]} />
+                <SearchResults results={photographers} />
             </div>
         );
     };
@@ -62,24 +66,26 @@ const HomePage = () => {
     const handleLocationFormSubmit = async (event) => {
         event.preventDefault();
 
-        if (!photographers) {
+        if (!search) {
             return false;
         }
 
         try {
-            const response = await findByState(photographers);
+            const response = await findByState(search);
 
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
-            setPhotographers('');
+
+            setPhotographers(response.data);
+            setSearch('');
         } catch (err) {
             console.error(err);
         }
         return (
             <div>
                 {/* Pass our results to the SearchResults component to map over */}
-                <SearchResults results={[photographers]} />
+                <SearchResults results={photographers} />
             </div>
         );
     };
@@ -110,9 +116,9 @@ const HomePage = () => {
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={photographers}
+                                value={search}
                                 label="photoType"
-                                onChange={(e) => handlePhotographerChange(e.target.value)}
+                                onChange={(e) => handleSearchChange(e.target.value)}
                             >
                                 <MenuItem value="Type" >
                                     <em>None</em>
@@ -150,9 +156,9 @@ const HomePage = () => {
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={photographers}
+                                value={search}
                                 label="location"
-                                onChange={(e) => handlePhotographerChange(e.target.value)}
+                                onChange={(e) => handleSearchChange(e.target.value)}
                             >
                                 <MenuItem value="Location">
                                     <em>None</em>

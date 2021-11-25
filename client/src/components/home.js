@@ -12,7 +12,6 @@ import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByCategory, findByState } from '../utils/API'
 import SearchResults from './SearchResults';
-import { set } from 'mongoose';
 
 
 
@@ -93,9 +92,10 @@ const HomePage = () => {
     // Need eventlistener on button click to make api call and change page?
 
     return (
-        <Container sx={{
-            bgcolor: secondaryLight
-        }}>
+        <Container maxWidth="xxl"
+            sx={{
+                bgcolor: secondaryLight,
+            }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 4, md: 6 }}>
                 <Grid item xs={6}>
                     <Box sx={{
@@ -118,7 +118,7 @@ const HomePage = () => {
                                 id="demo-simple-select-helper"
                                 value={search}
                                 label="photoType"
-                                onChange={(e) => handleSearchChange(e.target.value)}
+                                onChange={handleSearchChange}
                             >
                                 <MenuItem value="Type" >
                                     <em>None</em>
@@ -158,7 +158,7 @@ const HomePage = () => {
                                 id="demo-simple-select-helper"
                                 value={search}
                                 label="location"
-                                onChange={(e) => handleSearchChange(e.target.value)}
+                                onChange={handleSearchChange}
                             >
                                 <MenuItem value="Location">
                                     <em>None</em>

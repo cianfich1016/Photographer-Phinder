@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 // import Input from '@mui/material/Input';
+import Grid from '@mui/material/Grid';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -284,124 +285,159 @@ const SignUp = () => {
     };
 
     return (
-        <Container sx={{
-            bgcolor: secondaryLight
-        }}>
+        <Container maxWidth="xxl"
+            sx={{
+                bgcolor: secondaryLight,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}>
             <Box
                 component="form"
+                maxWidth="xl"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
                     display: 'flex',
                     justifyContent: 'center',
-                    p: 1,
-                    m: 1,
-                    bgcolor: primary,
+                    p: 2,
+                    m: 2,
+                    bgcolor: primaryLight,
                 }}
                 noValidate
                 autoComplete="off"
             >
-                <div>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="UserName Required"
-                        defaultValue="UserName"
-                    />
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Email Required"
-                        defaultValue="Email"
-                    />
-                    <TextField
-                        id="outlined-basic"
-                        label="Company Name"
-                        variant="outlined"
-                    />
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
+                <Grid container>
+                    <Grid item xs={12}>
+                        <TextField
                             required
-                            id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label="Password"
+                            id="outlined-required"
+                            label="UserName Required"
+                            defaultValue="UserName"
                         />
-                    </FormControl>
-                    <TextField
-                        id="outlined-multiline-static"
-                        label="Bio"
-                        multiline
-                        rows={4}
-                        defaultValue="Tell us about you..."
-                    />
-                    <TextField
-                        id="outlined-select-photo"
-                        select
-                        label="Select"
-                        value={values.photoType}
-                        onChange={handleChange}
-                        helperText="Please select your specialty"
-                    >
-                        {photoType.map((photos) => (
-                            <MenuItem key={photos.value} value={photos.value}>
-                                {photos.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        id="outlined-select-location"
-                        select
-                        label="Select"
-                        value={values.location}
-                        onChange={handleChange}
-                        helperText="Please select your state"
-                    >
-                        {locations.map((state) => (
-                            <MenuItem key={state.value} value={state.value}>
-                                {state.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        id="outlined-multiline-static"
-                        label="Please provide a link to your work"
-                        multiline
-                        rows={4}
-                        defaultValue="www.yourwork.com"
-                    />
-                    <TextField
-                        required
-                        id="outlined-number"
-                        label="Reservation Cost"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    <p> Please email your images for submission and approval to :<a class="mailto" href="mailto:photographerphinder.com">photographerphinder@gmail.com</a> </p>
-                    <Button variant="contained"
-                        sx={{
-                            bgcolor: primaryDark,
-                        }}>
-                        <Link href="/profile"> </Link>
-                        Create Your Profile</Button>
-                </div>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            required
+                            id="outlined-required"
+                            label="Email Required"
+                            defaultValue="Email"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            id="outlined-basic"
+                            label="Company Name"
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                            <OutlinedInput
+                                fullWidth
+                                required
+                                id="outlined-adornment-password"
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={values.password}
+                                onChange={handleChange('password')}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Password"
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            id="outlined-multiline-static"
+                            label="Bio"
+                            multiline
+                            rows={4}
+                            defaultValue="Tell us about you..."
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            id="outlined-select-photo"
+                            select
+                            label="Select"
+                            value={values.photoType}
+                            onChange={handleChange}
+                            helperText="Please select your specialty"
+                        >
+                            {photoType.map((photos) => (
+                                <MenuItem key={photos.value} value={photos.value}>
+                                    {photos.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            id="outlined-select-location"
+                            select
+                            label="Select"
+                            value={values.location}
+                            onChange={handleChange}
+                            helperText="Please select your state"
+                        >
+                            {locations.map((state) => (
+                                <MenuItem key={state.value} value={state.value}>
+                                    {state.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            id="outlined-multiline-static"
+                            label="Please provide a link to your work"
+                            multiline
+                            rows={4}
+                            defaultValue="www.yourwork.com"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            required
+                            id="outlined-number"
+                            label="Reservation Cost"
+                            type="number"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <p> Please email your images for submission and approval to: <a class="mailto" href="mailto:photographerphinder.com">photographerphinder @gmail.com</a> </p>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant="contained"
+                            sx={{
+                                bgcolor: primaryDark,
+                            }}>
+                            <Link href="/profile"> </Link>
+                            Create Your Profile</Button>
+                    </Grid>
+                </Grid>
             </Box>
-        </Container>
+        </Container >
     )
 }
 

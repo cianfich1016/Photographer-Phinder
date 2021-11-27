@@ -37,7 +37,7 @@
   }
 }
 
-img {
+.homeImage {
   /* display: flex; */
   /* flex-direction: row;
   justify-content: center; */
@@ -48,4 +48,12 @@ img {
   border-style: solid;
   border-width: 5px;
   background-color: rgb(120, 61, 230);
+}
+
+#pictureMsg {
+  padding-right: 330px;
+}
+
+h1 {
+  color: rgb(73, 29, 175);
 }

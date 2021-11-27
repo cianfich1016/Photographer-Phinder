@@ -234,9 +234,9 @@ const HomePage = () => {
                         flexDirection: "row",
                         flexWrap: "nowrap"
                     }}>
-                    <img src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
-                    <img src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
-                    <img src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
+                    <img className="homeImage" src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
+                    <img className="homeImage" src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
+                    <img className="homeImage" src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
                 </Box>
             </Grid>
             <Grid item xs={12}>

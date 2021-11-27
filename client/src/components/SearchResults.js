@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { teal, indigo } from '@mui/material/colors';
+import Link from "@mui/material/Link";
+import Profile from "./Profile"
 
 const primary = indigo[500]
 const primaryLight = indigo[200]
@@ -14,6 +16,33 @@ const secondary = teal[500]
 const secondaryLight = teal[200]
 
 const SearchResults = (props) => {
+
+    const [photographer, setPhotographer] = useState('');
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!photographer) {
+            return false;
+        }
+
+        try {
+            const response = await /* fetch call for single profile*/(photographer);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            setPhotographer(response.data);
+        } catch (err) {
+            console.error(err);
+        }
+        return (
+            <div>
+                {/* Pass our results to the Profile component to display*/}
+                <Profile results={photographer} />
+            </div>
+        );
+    };
 
     return (
         <Container maxWidth="xxl"
@@ -42,7 +71,8 @@ const SearchResults = (props) => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary.dark">
+                            <Button size="small" color="primary.dark" onSubmit={handleFormSubmit}>
+                                <Link href="/profile" color="inherit"></Link>
                                 Select
                             </Button>
                         </CardActions>

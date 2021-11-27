@@ -19,6 +19,10 @@ import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
 
+import { teal, indigo } from '@mui/material/colors';
+const secondaryLight = teal[200]
+const primary = indigo[500]
+
 export default function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
@@ -71,93 +75,103 @@ export default function Login() {
     margin: "30px auto",
   };
   return (
-    <div>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="center"
-        direction="row"
-      >
-        <Grid item>
-          <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            spacing={2}
-            className="login-form"
-            color="inherit"
-          >
-            <Container
-              variant="elevation"
-              elevation={2}
-              className="login-background"
-              style={paperStyle}
+    <Container maxWidth="xxl"
+      sx={{
+        bgcolor: secondaryLight,
+      }}>
+      <div>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          direction="row"
+        >
+          <Grid item>
+            <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              spacing={2}
+              className="login-form"
+              color="inherit"
             >
-              <Grid item align="center">
-                <Avatar>
-                  <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                  Sign in
-                </Typography>
-              </Grid>
-              &nbsp;
-              <Grid item>
-                <form
-                  //   noValidate
-                  //   validated={validated}
-                  onSubmit={handleFormSubmit}
-                >
-                  <Grid container direction="column" spacing={2}>
-                    <Grid item>
-                      <TextField
-                        type="email"
-                        placeholder="Email"
-                        fullWidth
-                        name="username"
-                        variant="outlined"
-                        // value={this.state.username}
-                        onChange={handleInputChange}
-                        required
-                        autoFocus
-                      />
+              <Container
+                variant="elevation"
+                elevation={2}
+                className="login-background"
+                style={paperStyle}
+              >
+                <Grid item align="center">
+                  <Avatar>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component="h1" variant="h5">
+                    Log in
+                  </Typography>
+                </Grid>
+                &nbsp;
+                <Grid item>
+                  <form
+                    //   noValidate
+                    //   validated={validated}
+                    onSubmit={handleFormSubmit}
+                  >
+                    <Grid container direction="column" spacing={2}>
+                      <Grid item>
+                        <TextField sx={{
+                          color: primary
+                        }}
+                          type="email"
+                          placeholder="Email"
+                          fullWidth
+                          name="username"
+                          variant="outlined"
+                          // value={this.state.username}
+                          onChange={handleInputChange}
+                          required
+                          autoFocus
+                        />
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          sx={{
+                            color: primary
+                          }}
+                          type="password"
+                          placeholder="Password"
+                          fullWidth
+                          name="password"
+                          variant="outlined"
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                          className="button-block"
+                        >
+                          Submit
+                        </Button>
+                      </Grid>
                     </Grid>
-                    <Grid item>
-                      <TextField
-                        type="password"
-                        placeholder="Password"
-                        fullWidth
-                        name="password"
-                        variant="outlined"
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                        className="button-block"
-                      >
-                        Submit
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </form>
-              </Grid>
-              &nbsp;
-              <Grid item>
-                <Typography>
-                  {" "}
-                  Don't have an account?
-                  <Link href="/signup"> Sign Up</Link>
-                </Typography>
-              </Grid>
-            </Container>
+                  </form>
+                </Grid>
+                &nbsp;
+                <Grid item>
+                  <Typography>
+                    {" "}
+                    Don't have an account?
+                    <Link href="/signup"> Sign Up</Link>
+                  </Typography>
+                </Grid>
+              </Container>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
+    </Container>
   );
 }

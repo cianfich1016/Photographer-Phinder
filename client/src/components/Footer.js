@@ -16,26 +16,29 @@ const secondaryDark = teal[700]
 
 export default function Footer() {
   return (
-    <footer>
-      <Box
-        px={{ xs: 3, sm: 5 }}
-        py={{ xs: 5, sm: 5 }}
-        sx={{ bgcolor: secondaryDark, color: "white" }}
-      // color="white"
-      >
-        <Container maxWidth="lg">
-          <Typography variant="body1" textAlign="center">
-            Copyright ©{" "}
-            <Link
-              href="https://github.com/cianfich1016/Photographer-Phinder"
-              color="inherit"
-              underline="none"
-            >
-              Github
-            </Link>
-          </Typography>
-        </Container>
-      </Box>
-    </footer>
+    <Box
+      px={{ xs: 3, sm: 5 }}
+      py={{ xs: 5, sm: 5 }}
+      sx={{ bgcolor: secondaryDark, color: "white" }}
+    // color="white"
+    >
+      <Container maxWidth="lg" sx={{
+        bgcolor: secondaryDark
+      }}>
+        <Typography variant="body1" textAlign="center" sx={{ bgcolor: secondaryDark }}>
+          Copyright ©{" "}
+          <Link
+            href="https://github.com/cianfich1016/Photographer-Phinder"
+            color="inherit"
+            underline="none"
+            sx={{
+              bgcolor: secondaryDark
+            }}
+          >
+            Github
+          </Link>
+        </Typography>
+      </Container>
+    </Box>
   );
 }

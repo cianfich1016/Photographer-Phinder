@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,33 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* * {
+  background-color: rgba(128, 203, 196, 255);
+} */
+
+.homeImage {
+  /* display: flex; */
+  /* flex-direction: row;
+  justify-content: center; */
+  width: 30%;
+  padding: 5px;
+  margin: 5px;
+  border-color: rgba(0, 121, 107, 255);
+  border-style: solid;
+  border-width: 5px;
+  background-color: rgba(26, 35, 126, 255);
+}
+
+#pictureMsg {
+  padding-right: 330px;
+}
+
+h1 {
+  color: rgba(26, 35, 126, 255);
+}
+
+.homepagetext {
+  color: rgba(26, 35, 126, 255);
 }

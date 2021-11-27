@@ -12,13 +12,15 @@ import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByCategory, findByState } from '../utils/API'
 import SearchResults from './SearchResults';
+import Paper from '@mui/material/Paper'
 
 
 
-const primary = indigo[500]
-const primaryDark = indigo[900]
-const secondary = teal[500]
-const secondaryLight = teal[200]
+const primary = indigo[500];
+const primaryLight = indigo[200];
+const primaryDark = indigo[900];
+const secondary = teal[500];
+const secondaryLight = teal[200];
 
 const HomePage = () => {
     const [search, setSearch] = useState('');
@@ -103,9 +105,13 @@ const HomePage = () => {
                         justifyContent: 'center',
                         p: 1,
                         m: 1,
-                        bgcolor: primary,
+                        bgcolor: primaryLight,
+                        borderStyle: "solid",
+                        borderColor: primaryDark,
+                        borderWidth: "5px",
+                        borderRadius: "10px"
                     }}>
-                        <FormControl
+                        <FormControl className="type"
                             onSubmit={handleTypeFormSubmit}
                             sx={{
                                 m: 1,
@@ -146,9 +152,13 @@ const HomePage = () => {
                         justifyContent: 'center',
                         p: 1,
                         m: 1,
-                        bgcolor: primary,
+                        bgcolor: primaryLight,
+                        borderStyle: "solid",
+                        borderColor: primaryDark,
+                        borderWidth: "5px",
+                        borderRadius: "10px"
                     }}>
-                        <FormControl
+                        <FormControl className="state"
                             onSubmit={handleLocationFormSubmit}
                             sx={{ m: 1, minWidth: 120 }}>
                             <h1>Location by State</h1>
@@ -226,24 +236,31 @@ const HomePage = () => {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <paper>
-                    <div className="imageRow">
-                        <img src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
-                        <img src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
-                        <img src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
-                    </div>
-                </paper>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: 'space-around',
+                        flexDirection: "row",
+                        flexWrap: "nowrap"
+                    }}>
+                    <img className="homeImage" src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
+                    <img className="homeImage" src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
+                    <img className="homeImage" src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
+                </Box>
             </Grid>
-
             <Grid item xs={12}>
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'center',
                     p: 1,
                     m: 1,
-                    bgcolor: primary,
+                    bgcolor: primaryLight,
+                    borderStyle: "solid",
+                    borderColor: primaryDark,
+                    borderWidth: "5px",
+                    borderRadius: "10px"
                 }}>
-                    <div>
+                    <div className="homepagetext">
                         <h1> Let us help you capture the perfect photographer to capture your perfect moments...</h1>
                         <p> Whether you are celebrating a milestone in your life be it marriage or an edition to the family,
                             or are looking to update your headshots, or maybe Fido needs a new portrait on the wall, let Photographer Phinder

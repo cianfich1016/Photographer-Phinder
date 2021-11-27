@@ -18,9 +18,13 @@ const secondaryLight = teal[200]
 const SearchResults = (props) => {
 
     return (
-        <Container sx={{
-            bgcolor: secondaryLight
-        }}>
+        <Container maxWidth="xxl"
+            sx={{
+                bgcolor: secondaryLight,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}>
             {
                 props.photographers.map((photographer) => (
                     <Card sx={{ maxWidth: 345 }} key={photographer.id}>

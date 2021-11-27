@@ -6,22 +6,24 @@ import HomePage from "./components/Home";
 import Login from "./components/LoginForm";
 import Footer from "./components/Footer";
 import SearchResults from "./components/SearchResults";
+import SignUp from "./components/SignUp"
 
 function App() {
   return (
     <>
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={Login} />
-        {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
-      </Switch>
-      <Footer />
-    </Router>
-    <div className="App">
-      <SearchResults />
-      {/* <header className="App-header">
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/login" component={Login} />
+          <Route path="/searchresults" component={SearchResults} />
+          <Route path="/signup" component={SignUp} />
+          {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
+        </Switch>
+        <Footer />
+      </Router>
+      <div className="App">
+        {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hello
@@ -35,7 +37,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-    </div>
+      </div>
     </>
   );
 }

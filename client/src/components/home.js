@@ -8,7 +8,10 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
+import { findByCategory, findByState } from '../utils/API'
+import SearchResults from './SearchResults';
 
 
 
@@ -18,24 +21,81 @@ const secondary = teal[500]
 const secondaryLight = teal[200]
 
 const HomePage = () => {
-    const [photoType, setPhotoType] = useState('Wedding');
-    const [location, setLocation] = useState('Alabama');
+    const [search, setSearch] = useState('');
+    // const [photoType, setPhotoType] = useState('');
+    // const [location, setLocation] = useState('');
 
-    const handleTypeChange = (event) => {
-        setPhotoType(event.target.value);
-        //fetch call and page change
+    const [photographers, setPhotographers] = useState([])
+
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value);
     };
-    const handleLocationChange = (event) => {
-        setLocation(event.target.value);
-        //fetch call and page change
+
+    // const handleLocationChange = (event) => {
+    //     setLocation(event.target.value);
+    //     //fetch call and page change
+    // };
+
+    const handleTypeFormSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!search) {
+            return false;
+        }
+
+        try {
+            const response = await findByCategory(search);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            setPhotographers(response.data);
+            setSearch('');
+        } catch (err) {
+            console.error(err);
+        }
+        return (
+            <div>
+                {/* Pass our results to the SearchResults component to map over */}
+                <SearchResults results={photographers} />
+            </div>
+        );
+    };
+
+    const handleLocationFormSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!search) {
+            return false;
+        }
+
+        try {
+            const response = await findByState(search);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+
+            setPhotographers(response.data);
+            setSearch('');
+        } catch (err) {
+            console.error(err);
+        }
+        return (
+            <div>
+                {/* Pass our results to the SearchResults component to map over */}
+                <SearchResults results={photographers} />
+            </div>
+        );
     };
 
     // Need eventlistener on button click to make api call and change page?
 
     return (
-        <Container sx={{
-            bgcolor: secondaryLight
-        }}>
+        <Container maxWidth="xxl"
+            sx={{
+                bgcolor: secondaryLight,
+            }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 4, md: 6 }}>
                 <Grid item xs={6}>
                     <Box sx={{
@@ -45,18 +105,20 @@ const HomePage = () => {
                         m: 1,
                         bgcolor: primary,
                     }}>
-                        <FormControl sx={{
-                            m: 1,
-                            minWidth: 120,
-                        }}>
+                        <FormControl
+                            onSubmit={handleTypeFormSubmit}
+                            sx={{
+                                m: 1,
+                                minWidth: 120,
+                            }}>
                             <h1>Photographer Type</h1>
                             <InputLabel id="demo-simple-select-helper-label"></InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={photoType}
+                                value={search}
                                 label="photoType"
-                                onChange={handleTypeChange}
+                                onChange={handleSearchChange}
                             >
                                 <MenuItem value="Type" >
                                     <em>None</em>
@@ -69,9 +131,12 @@ const HomePage = () => {
                                 <MenuItem value={"Other"}>Other</MenuItem>
                             </Select>
                             <FormHelperText>Photography Type</FormHelperText>
-                            <Button variant="contained" href="######alskdfjslkafhwoiefnw" sx={{
-                                bgcolor: primaryDark,
-                            }}>Search</Button>
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: primaryDark,
+                                }}>
+                                Search <Link href="/searchresults"> </Link>
+                            </Button>
                         </FormControl>
                     </Box>
                 </Grid>
@@ -83,15 +148,17 @@ const HomePage = () => {
                         m: 1,
                         bgcolor: primary,
                     }}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl
+                            onSubmit={handleLocationFormSubmit}
+                            sx={{ m: 1, minWidth: 120 }}>
                             <h1>Location by State</h1>
                             <InputLabel id="demo-simple-select-helper-label"></InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={location}
+                                value={search}
                                 label="location"
-                                onChange={handleLocationChange}
+                                onChange={handleSearchChange}
                             >
                                 <MenuItem value="Location">
                                     <em>None</em>
@@ -148,9 +215,12 @@ const HomePage = () => {
                                 <MenuItem value={"Wyoming"}>Wyoming</MenuItem>
                             </Select>
                             <FormHelperText>Location</FormHelperText>
-                            <Button variant="contained" href="####alskdfjslkafhwoiefnw" sx={{
-                                bgcolor: primaryDark,
-                            }}>Search</Button>
+                            <Button variant="contained"
+                                sx={{
+                                    bgcolor: primaryDark,
+                                }}> Search
+                                <Link href="/searchresults"> </Link>
+                            </Button>
                         </FormControl>
                     </Box>
                 </Grid>

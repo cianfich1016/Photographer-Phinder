@@ -38,7 +38,7 @@ const SearchResults = (props) => {
         }
         return (
             <div>
-                {/* Pass our results to the SearchResults component to map over */}
+                {/* Pass our results to the Profile component to display*/}
                 <Profile results={photographer} />
             </div>
         );

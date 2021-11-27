@@ -7,8 +7,6 @@ import { Typography } from '@mui/material';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { teal, indigo } from '@mui/material/colors';
 
-
-
 const primary = indigo[500]
 const primaryLight = indigo[200]
 const primaryDark = indigo[900]

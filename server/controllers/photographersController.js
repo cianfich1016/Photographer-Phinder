@@ -13,16 +13,6 @@ module.exports = {
     res.json(profiles);
   },
 
-  async findById(req, res) {
-    const profiles = await eb.find({ _id: req.id })
-
-    if (!profiles) {
-      return res.status(400).json({ message: 'No profiles found' });
-    }
-
-    res.json(profiles);
-  },
-
   async findByState(req, res) {
     const profiles = await db.find({ state: req.state });
 

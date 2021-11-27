@@ -16,7 +16,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { teal, indigo } from "@mui/material/colors";
-import Profile from "../pages/Profile";
+import Profile from "./Profile";
 
 const primary = indigo[500];
 const primaryLight = indigo[200];

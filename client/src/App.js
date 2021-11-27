@@ -7,7 +7,7 @@ import Login from "./components/LoginForm";
 import Footer from "./components/Footer";
 import SearchResults from "./components/SearchResults";
 import SignUp from "./components/SignUp";
-import Profile from "./pages/Profile";
+import Profile from "./components/Profile";
 
 function App() {
   return (

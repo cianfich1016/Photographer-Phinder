@@ -12,7 +12,7 @@ import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByCategory, findByState } from '../utils/API'
 import SearchResults from './SearchResults';
-import Paper from '@mui/material/Paper'
+// import Paper from '@mui/material/Paper'
 
 
 
@@ -24,6 +24,7 @@ const secondaryLight = teal[200];
 
 const HomePage = () => {
     const [search, setSearch] = useState('');
+    console.log(search)
     // const [photoType, setPhotoType] = useState('');
     // const [location, setLocation] = useState('');
 
@@ -38,31 +39,31 @@ const HomePage = () => {
     //     //fetch call and page change
     // };
 
-    const handleTypeFormSubmit = async (event) => {
-        event.preventDefault();
+    // const handleTypeFormSubmit = async (event) => {
+    //     event.preventDefault();
 
-        if (!search) {
-            return false;
-        }
+    //     if (!search) {
+    //         return false;
+    //     }
 
-        try {
-            const response = await findByCategory(search);
+    //     try {
+    //         const response = await findByCategory(search);
 
-            if (!response.ok) {
-                throw new Error('something went wrong!');
-            }
-            setPhotographers(response.data);
-            setSearch('');
-        } catch (err) {
-            console.error(err);
-        }
-        return (
-            <div>
-                {/* Pass our results to the SearchResults component to map over */}
-                <SearchResults results={photographers} />
-            </div>
-        );
-    };
+    //         if (!response.ok) {
+    //             throw new Error('something went wrong!');
+    //         }
+    //         setPhotographers(response.data);
+    //         setSearch('');
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    //     return (
+    //         <div>
+    //             {/* Pass our results to the SearchResults component to map over */}
+    //             <SearchResults results={photographers} />
+    //         </div>
+    //     );
+    // };
 
     const handleLocationFormSubmit = async (event) => {
         event.preventDefault();
@@ -99,20 +100,20 @@ const HomePage = () => {
                 bgcolor: secondaryLight,
             }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 4, md: 6 }}>
-                <Grid item xs={6}>
-                    <Box sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        p: 1,
-                        m: 1,
-                        bgcolor: primaryLight,
-                        borderStyle: "solid",
-                        borderColor: primaryDark,
-                        borderWidth: "5px",
-                        borderRadius: "10px"
-                    }}>
-                        <FormControl className="type"
-                            onSubmit={handleTypeFormSubmit}
+                {/* <Grid item xs={6}>
+            <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            p: 1,
+            m: 1,
+            bgcolor: primaryLight,
+            borderStyle: "solid",
+            borderColor: primaryDark,
+            borderWidth: "5px",
+            borderRadius: "10px"
+        }}> */}
+                {/* <FormControl className="type"
+                            onSubmit={}
                             sx={{
                                 m: 1,
                                 minWidth: 120,
@@ -122,9 +123,9 @@ const HomePage = () => {
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                value={search}
+                                value={}
                                 label="photoType"
-                                onChange={handleSearchChange}
+                                onChange={}
                             >
                                 <MenuItem value="Type" >
                                     <em>None</em>
@@ -141,12 +142,12 @@ const HomePage = () => {
                                 sx={{
                                     bgcolor: primaryDark,
                                 }}>
-                                Search <Link href="/searchresults"> </Link>
+                                Search <Link href="./searchresults"> </Link>
                             </Button>
                         </FormControl>
-                    </Box>
-                </Grid>
-                <Grid item xs={6}>
+                    </Box> */}
+                {/* </Grid> */}
+                <Grid item xs={12}>
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -158,80 +159,83 @@ const HomePage = () => {
                         borderWidth: "5px",
                         borderRadius: "10px"
                     }}>
-                        <FormControl className="state"
-                            onSubmit={handleLocationFormSubmit}
-                            sx={{ m: 1, minWidth: 120 }}>
-                            <h1>Location by State</h1>
-                            <InputLabel id="demo-simple-select-helper-label"></InputLabel>
-                            <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                value={search}
-                                label="location"
-                                onChange={handleSearchChange}
-                            >
-                                <MenuItem value="Location">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={"Alabama"}>Alabama</MenuItem>
-                                <MenuItem value={"Alaska"}>Alaska</MenuItem>
-                                <MenuItem value={"Arizona"}>Arizona</MenuItem>
-                                <MenuItem value={"Arkansas"}>Arkansas</MenuItem>
-                                <MenuItem value={"California"}>California</MenuItem>
-                                <MenuItem value={"Colorado"}>Colorado</MenuItem>
-                                <MenuItem value={"Connecticut"}>Connecticut</MenuItem>
-                                <MenuItem value={"Delaware"}>Delaware</MenuItem>
-                                <MenuItem value={"Florida"}>Florida</MenuItem>
-                                <MenuItem value={"Georgia"}>Georgia</MenuItem>
-                                <MenuItem value={"Hawaii"}>Hawaii</MenuItem>
-                                <MenuItem value={"Idaho"}>Idaho</MenuItem>
-                                <MenuItem value={"Illinois"}>Illinois</MenuItem>
-                                <MenuItem value={"Indiana"}>Indiana</MenuItem>
-                                <MenuItem value={"Iowa"}>Iowa</MenuItem>
-                                <MenuItem value={"Kansas"}>Kansas</MenuItem>
-                                <MenuItem value={"Kentucky"}>Kentucky</MenuItem>
-                                <MenuItem value={"Louisiana"}>Louisiana</MenuItem>
-                                <MenuItem value={"Maine"}>Maine</MenuItem>
-                                <MenuItem value={"Maryland"}>Maryland</MenuItem>
-                                <MenuItem value={"Massachusetts"}>Massachusetts</MenuItem>
-                                <MenuItem value={"Michigan"}>Michigan</MenuItem>
-                                <MenuItem value={"Minnesota"}>Minnesota</MenuItem>
-                                <MenuItem value={"Mississippi"}>Mississippi</MenuItem>
-                                <MenuItem value={"Missouri"}>Missouri</MenuItem>
-                                <MenuItem value={"Montana"}>Montana</MenuItem>
-                                <MenuItem value={"Nebraska"}>Nebraska</MenuItem>
-                                <MenuItem value={"Nevada"}>Nevada</MenuItem>
-                                <MenuItem value={"New Hampshire"}>New Hampshire</MenuItem>
-                                <MenuItem value={"New Jersey"}>New Jersey</MenuItem>
-                                <MenuItem value={"New Mexico"}>New Mexico</MenuItem>
-                                <MenuItem value={"New York"}>New York</MenuItem>
-                                <MenuItem value={"North Carolina"}>North Carolina</MenuItem>
-                                <MenuItem value={"North Dakota"}>North Dakota</MenuItem>
-                                <MenuItem value={"Ohio"}>Ohio</MenuItem>
-                                <MenuItem value={"Oklahoma"}>Oklahoma</MenuItem>
-                                <MenuItem value={"Oregon"}>Oregon</MenuItem>
-                                <MenuItem value={"Pennsylvania"}>Pennsylvania</MenuItem>
-                                <MenuItem value={"Rhode Island"}>Rhode Island</MenuItem>
-                                <MenuItem value={"South Carolina"}>South Carolina</MenuItem>
-                                <MenuItem value={"South Dakota"}>South Dakota</MenuItem>
-                                <MenuItem value={"Tennessee "}>Tennessee</MenuItem>
-                                <MenuItem value={"Texas"}>Texas</MenuItem>
-                                <MenuItem value={"Utah"}>Utah</MenuItem>
-                                <MenuItem value={"Vermont"}>Vermont</MenuItem>
-                                <MenuItem value={"Virginia"}>Virginia</MenuItem>
-                                <MenuItem value={"Washington"}>Washington</MenuItem>
-                                <MenuItem value={"West Virginia"}>West Virginia</MenuItem>
-                                <MenuItem value={"Wisconsin"}>Wisconsin</MenuItem>
-                                <MenuItem value={"Wyoming"}>Wyoming</MenuItem>
-                            </Select>
-                            <FormHelperText>Location</FormHelperText>
-                            <Button variant="contained"
-                                sx={{
-                                    bgcolor: primaryDark,
-                                }}> Search
-                                <Link href="/searchresults"> </Link>
-                            </Button>
-                        </FormControl>
+                        <form>
+                            <FormControl className="state"
+                                onSubmit={handleLocationFormSubmit}
+                                sx={{ m: 1, minWidth: 120 }}>
+                                <h1>Search Photographes by State</h1>
+                                <InputLabel id="demo-simple-select-helper-label"></InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={search}
+                                    label="location"
+                                    onChange={handleSearchChange}
+                                >
+                                    <MenuItem value="Location">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={"Alabama"}>Alabama</MenuItem>
+                                    <MenuItem value={"Alaska"}>Alaska</MenuItem>
+                                    <MenuItem value={"Arizona"}>Arizona</MenuItem>
+                                    <MenuItem value={"Arkansas"}>Arkansas</MenuItem>
+                                    <MenuItem value={"California"}>California</MenuItem>
+                                    <MenuItem value={"Colorado"}>Colorado</MenuItem>
+                                    <MenuItem value={"Connecticut"}>Connecticut</MenuItem>
+                                    <MenuItem value={"Delaware"}>Delaware</MenuItem>
+                                    <MenuItem value={"Florida"}>Florida</MenuItem>
+                                    <MenuItem value={"Georgia"}>Georgia</MenuItem>
+                                    <MenuItem value={"Hawaii"}>Hawaii</MenuItem>
+                                    <MenuItem value={"Idaho"}>Idaho</MenuItem>
+                                    <MenuItem value={"Illinois"}>Illinois</MenuItem>
+                                    <MenuItem value={"Indiana"}>Indiana</MenuItem>
+                                    <MenuItem value={"Iowa"}>Iowa</MenuItem>
+                                    <MenuItem value={"Kansas"}>Kansas</MenuItem>
+                                    <MenuItem value={"Kentucky"}>Kentucky</MenuItem>
+                                    <MenuItem value={"Louisiana"}>Louisiana</MenuItem>
+                                    <MenuItem value={"Maine"}>Maine</MenuItem>
+                                    <MenuItem value={"Maryland"}>Maryland</MenuItem>
+                                    <MenuItem value={"Massachusetts"}>Massachusetts</MenuItem>
+                                    <MenuItem value={"Michigan"}>Michigan</MenuItem>
+                                    <MenuItem value={"Minnesota"}>Minnesota</MenuItem>
+                                    <MenuItem value={"Mississippi"}>Mississippi</MenuItem>
+                                    <MenuItem value={"Missouri"}>Missouri</MenuItem>
+                                    <MenuItem value={"Montana"}>Montana</MenuItem>
+                                    <MenuItem value={"Nebraska"}>Nebraska</MenuItem>
+                                    <MenuItem value={"Nevada"}>Nevada</MenuItem>
+                                    <MenuItem value={"New Hampshire"}>New Hampshire</MenuItem>
+                                    <MenuItem value={"New Jersey"}>New Jersey</MenuItem>
+                                    <MenuItem value={"New Mexico"}>New Mexico</MenuItem>
+                                    <MenuItem value={"New York"}>New York</MenuItem>
+                                    <MenuItem value={"North Carolina"}>North Carolina</MenuItem>
+                                    <MenuItem value={"North Dakota"}>North Dakota</MenuItem>
+                                    <MenuItem value={"Ohio"}>Ohio</MenuItem>
+                                    <MenuItem value={"Oklahoma"}>Oklahoma</MenuItem>
+                                    <MenuItem value={"Oregon"}>Oregon</MenuItem>
+                                    <MenuItem value={"Pennsylvania"}>Pennsylvania</MenuItem>
+                                    <MenuItem value={"Rhode Island"}>Rhode Island</MenuItem>
+                                    <MenuItem value={"South Carolina"}>South Carolina</MenuItem>
+                                    <MenuItem value={"South Dakota"}>South Dakota</MenuItem>
+                                    <MenuItem value={"Tennessee "}>Tennessee</MenuItem>
+                                    <MenuItem value={"Texas"}>Texas</MenuItem>
+                                    <MenuItem value={"Utah"}>Utah</MenuItem>
+                                    <MenuItem value={"Vermont"}>Vermont</MenuItem>
+                                    <MenuItem value={"Virginia"}>Virginia</MenuItem>
+                                    <MenuItem value={"Washington"}>Washington</MenuItem>
+                                    <MenuItem value={"West Virginia"}>West Virginia</MenuItem>
+                                    <MenuItem value={"Wisconsin"}>Wisconsin</MenuItem>
+                                    <MenuItem value={"Wyoming"}>Wyoming</MenuItem>
+                                </Select>
+                                <FormHelperText>Location</FormHelperText>
+                                <Link href="/searchresults">
+                                    <Button variant="contained"
+                                        sx={{
+                                            bgcolor: primaryDark,
+                                        }}> Search
+                                    </Button>
+                                </Link>
+                            </FormControl>
+                        </form>
                     </Box>
                 </Grid>
             </Grid>

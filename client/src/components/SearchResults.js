@@ -17,29 +17,29 @@ const secondaryLight = teal[200]
 
 const SearchResults = (props) => {
 
-    const [photographer, setPhotographer] = useState('');
+    const [statePhotographer, setStatePhotographer] = useState('');
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        if (!photographer) {
+        if (!statePhotographer) {
             return false;
         }
 
         try {
-            const response = await /* fetch call for single profile*/(photographer);
+            const response = await /* fetch call for single profile*/(statePhotographer);
 
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
-            setPhotographer(response.data);
+            setStatePhotographer(response.data);
         } catch (err) {
             console.error(err);
         }
         return (
             <div>
                 {/* Pass our results to the Profile component to display*/}
-                <Profile results={photographer} />
+                <Profile results={statePhotographer} />
             </div>
         );
     };
@@ -53,33 +53,31 @@ const SearchResults = (props) => {
                 alignItems: "center",
             }}>
             {
-                props.photographers.map((photographer) => (
-                    <Card sx={{ maxWidth: 345 }} key={photographer.id}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                height="140"
-                                image={photographer.image}
-                                alt=""
-                            />
-                            <CardContent sx={{
-                                bgcolor: primaryLight
-                            }}>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {photographer.business}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary.dark" onSubmit={handleFormSubmit}>
-                                <Link href="/profile" color="inherit"></Link>
-                                Select
-                            </Button>
-                        </CardActions>
-                    </Card>
-                ))
+                // props.photographers.map((photographer) => (
+                <Card sx={{ maxWidth: 345 }} /*key={photographer.id }*/>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            height="140"
+                            /*image={photographer.image }*/
+                            alt=""
+                        />
+                        <CardContent sx={{
+                            bgcolor: primaryLight
+                        }}>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Name : Simply Class
+                                Specialty: Maternity
+                            </Typography>
+                            <Button href="./Profile" onclick={handleFormSubmit}>Select</Button>
+                        </CardContent>
+                    </CardActionArea>
+                    {/* <CardActions> */}
+                    {/* </CardActions> */}
+                </Card>
+                // ))
             }
-        </Container>
+        </Container >
     )
 }
 

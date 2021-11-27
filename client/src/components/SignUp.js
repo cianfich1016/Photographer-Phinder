@@ -430,7 +430,7 @@ const SignUp = () => {
                         }}>
                         <p id="pictureMsg">
                             {" "}
-                            Please email your images for submission and approval to:{" "}
+                            Please email up to 5 images for submission and approval to:{" "}
                             <a className="mailto" href="mailto:photographerphinder@gmail.com">
                                 photographerphinder@gmail.com
                             </a>{" "}

@@ -106,6 +106,10 @@ const HomePage = () => {
                         p: 1,
                         m: 1,
                         bgcolor: primaryLight,
+                        borderStyle: "solid",
+                        borderColor: primaryDark,
+                        borderWidth: "5px",
+                        borderRadius: "10px"
                     }}>
                         <FormControl className="type"
                             onSubmit={handleTypeFormSubmit}
@@ -149,6 +153,10 @@ const HomePage = () => {
                         p: 1,
                         m: 1,
                         bgcolor: primaryLight,
+                        borderStyle: "solid",
+                        borderColor: primaryDark,
+                        borderWidth: "5px",
+                        borderRadius: "10px"
                     }}>
                         <FormControl className="state"
                             onSubmit={handleLocationFormSubmit}
@@ -247,8 +255,12 @@ const HomePage = () => {
                     p: 1,
                     m: 1,
                     bgcolor: primaryLight,
+                    borderStyle: "solid",
+                    borderColor: primaryDark,
+                    borderWidth: "5px",
+                    borderRadius: "10px"
                 }}>
-                    <div>
+                    <div className="homepagetext">
                         <h1> Let us help you capture the perfect photographer to capture your perfect moments...</h1>
                         <p> Whether you are celebrating a milestone in your life be it marriage or an edition to the family,
                             or are looking to update your headshots, or maybe Fido needs a new portrait on the wall, let Photographer Phinder

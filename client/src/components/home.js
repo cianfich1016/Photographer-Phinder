@@ -12,6 +12,7 @@ import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByCategory, findByState } from '../utils/API'
 import SearchResults from './SearchResults';
+import Paper from '@mui/material/Paper'
 
 
 
@@ -105,7 +106,7 @@ const HomePage = () => {
                         m: 1,
                         bgcolor: primary,
                     }}>
-                        <FormControl
+                        <FormControl className="type"
                             onSubmit={handleTypeFormSubmit}
                             sx={{
                                 m: 1,
@@ -148,7 +149,7 @@ const HomePage = () => {
                         m: 1,
                         bgcolor: primary,
                     }}>
-                        <FormControl
+                        <FormControl className="state"
                             onSubmit={handleLocationFormSubmit}
                             sx={{ m: 1, minWidth: 120 }}>
                             <h1>Location by State</h1>
@@ -226,15 +227,18 @@ const HomePage = () => {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <paper>
-                    <div className="imageRow">
-                        <img src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
-                        <img src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
-                        <img src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
-                    </div>
-                </paper>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: 'space-around',
+                        flexDirection: "row",
+                        flexWrap: "nowrap"
+                    }}>
+                    <img src="/image/pexels-andre-furtado-1264210.jpg" alt="Woman with Camera"></img>
+                    <img src="/image/pexels-hamann-la-947785.jpg" alt="Woman with Camera"></img>
+                    <img src="/image/pexels-element-digital-1051076.jpg" alt="Woman with Camera"></img>
+                </Box>
             </Grid>
-
             <Grid item xs={12}>
                 <Box sx={{
                     display: 'flex',

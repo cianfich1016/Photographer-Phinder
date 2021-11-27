@@ -16,10 +16,11 @@ import Paper from '@mui/material/Paper'
 
 
 
-const primary = indigo[500]
-const primaryDark = indigo[900]
-const secondary = teal[500]
-const secondaryLight = teal[200]
+const primary = indigo[500];
+const primaryLight = indigo[200];
+const primaryDark = indigo[900];
+const secondary = teal[500];
+const secondaryLight = teal[200];
 
 const HomePage = () => {
     const [search, setSearch] = useState('');
@@ -104,7 +105,7 @@ const HomePage = () => {
                         justifyContent: 'center',
                         p: 1,
                         m: 1,
-                        bgcolor: primary,
+                        bgcolor: primaryLight,
                     }}>
                         <FormControl className="type"
                             onSubmit={handleTypeFormSubmit}
@@ -147,7 +148,7 @@ const HomePage = () => {
                         justifyContent: 'center',
                         p: 1,
                         m: 1,
-                        bgcolor: primary,
+                        bgcolor: primaryLight,
                     }}>
                         <FormControl className="state"
                             onSubmit={handleLocationFormSubmit}
@@ -245,7 +246,7 @@ const HomePage = () => {
                     justifyContent: 'center',
                     p: 1,
                     m: 1,
-                    bgcolor: primary,
+                    bgcolor: primaryLight,
                 }}>
                     <div>
                         <h1> Let us help you capture the perfect photographer to capture your perfect moments...</h1>

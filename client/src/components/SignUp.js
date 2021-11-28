@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-// import FormHelperText from '@mui/material/FormHelperText';
+import FormHelperText from '@mui/material/FormHelperText';
 import Link from "@mui/material/Link";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
@@ -19,6 +19,7 @@ import { teal, indigo } from "@mui/material/colors";
 import Auth from '../utils/auth';
 import Profile from "./Profile";
 import { createProfile } from "../utils/API";
+import Select from '@mui/material/Select';
 
 const primary = indigo[500];
 const primaryLight = indigo[200];
@@ -213,10 +214,6 @@ const locations = [
         label: "South Dakota",
     },
     {
-        value: "South Carolina",
-        label: "South Carolina",
-    },
-    {
         value: "Tennessee",
         label: "Tennessee",
     },
@@ -401,36 +398,46 @@ const SignUp = () => {
                         />
                     </Grid>
                     <Grid item xs={4}>
-                        <TextField
-                            id="outlined-select-photo"
-                            select
-                            label="Select"
-                            value={values.photoType}
-                            onChange={handleChange}
-                            helperText="Please select your specialty"
-                        >
-                            {photoType.map((photos) => (
-                                <MenuItem key={photos.value} value={photos.value}>
-                                    {photos.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                        <FormControl
+                            sx={{ m: 1, width: "25ch" }}>
+                            <InputLabel id="demo-simple-select-helper-label"></InputLabel>
+                            <Select
+                                id="outlined-select-photo"
+                                select
+                                label="Select"
+                                value={photoType.value}
+                                onChange={handleChange}
+                                helperText="Please select your specialty"
+                            >
+                                {photoType.map((photos) => (
+                                    <MenuItem key={photos.value} value={photos.value}>
+                                        {photos.label}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                            <FormHelperText>Location</FormHelperText>
+                        </FormControl>
                     </Grid>
                     <Grid item xs={4}>
-                        <TextField
-                            id="outlined-select-location"
-                            select
-                            label="Select"
-                            value={values.location}
-                            onChange={handleChange}
-                            helperText="Please select your state"
-                        >
-                            {locations.map((state) => (
-                                <MenuItem key={state.value} value={state.value}>
-                                    {state.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                        <FormControl
+                            sx={{ m: 1, width: "25ch" }}>
+                            <InputLabel id="demo-simple-select-helper-label"></InputLabel>
+                            <Select
+                                id="outlined-select-location"
+                                select
+                                label="Select"
+                                value={locations.value}
+                                onChange={handleChange}
+                                helperText="Please select your state"
+                            >
+                                {locations.map((state) => (
+                                    <MenuItem key={state.value} value={state.value}>
+                                        {state.label}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                            <FormHelperText>Location</FormHelperText>
+                        </FormControl>
                     </Grid>
                     <Grid item xs={4}>
                         <TextField

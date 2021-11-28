@@ -1,41 +1,107 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/NavBar";
-import HomePage from "./components/Home";
+import HomePage from "./components/home";
 import Login from "./components/LoginForm";
 import Footer from "./components/Footer";
 import SearchResults from "./components/SearchResults";
+import SignUp from "./components/SignUp";
+import Profile from "./pages/Profile";
+import Products from "./components/Products/Products.js";
+import Cart from "./pages/Cart/Cart";
+import Checkout from "./pages/Checkout/CheckoutPage/Checkout";
+import { commerce } from "./lib/commerce";
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
+  const [order, setOrder] = useState({});
+  const [errorMess, setErrorMess] = useState("");
+
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list();
+    setProducts(data);
+    console.log(data);
+  };
+  const fetchCart = async () => {
+    const data = await commerce.cart.retrieve();
+    setCart(data);
+    console.log(data);
+  };
+  const handleAddToCart = async (product_id, quantity) => {
+    console.log(product_id);
+    const item = await commerce.cart.add(product_id, quantity);
+    setCart(item.cart);
+    // commerce.cart.contents().then((items) => console.log(items));
+  };
+  const handleUpdateCartQty = async (productId, quantity) => {
+    const data = await commerce.cart.update(productId, { quantity });
+    setCart(data.cart);
+  };
+  const handleRemoveFromCart = async (productId) => {
+    const data = await commerce.cart.remove(productId);
+    setCart(data.cart);
+  };
+  const handleEmptyCart = async () => {
+    const data = await commerce.cart.empty();
+    setCart(data.cart);
+  };
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+
+    setCart(newCart);
+  };
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(
+        checkoutTokenId,
+        newOrder
+      );
+      setOrder(incomingOrder);
+
+      refreshCart();
+    } catch (error) {
+      setErrorMess(error.data.error.message);
+    }
+  };
+  useEffect(() => {
+    fetchProducts();
+    fetchCart();
+  }, []);
   return (
     <>
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={Login} />
-        {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
-      </Switch>
-      <Footer />
-    </Router>
-    <div className="App">
-      <SearchResults />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+      <Router>
+        <Navbar totalItems={cart.total_items} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/login" component={Login} />
+          <Route path="/search" component={SearchResults} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/profile" component={Profile} />
+          <Route exact path="/products">
+            <Products products={products} onAddToCart={handleAddToCart} />
+          </Route>
+          <Route exact path="/cart">
+            <Cart
+              cart={cart}
+              onUpdateCartQty={handleUpdateCartQty}
+              onRemoveFromCart={handleRemoveFromCart}
+              onEmptyCart={handleEmptyCart}
+            />
+          </Route>
+          <Route exact path="/checkout">
+            <Checkout
+              cart={cart}
+              order={order}
+              onCaptureCheckout={handleCaptureCheckout}
+              error={errorMess}
+            />
+          </Route>
+          <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
+        </Switch>
+        <Footer />
+      </Router>
     </>
   );
 }

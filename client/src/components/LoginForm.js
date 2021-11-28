@@ -18,6 +18,7 @@ import { InputLabel } from "@mui/material";
 import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
+import SignUp from "./SignUp";
 
 export default function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
@@ -151,7 +152,8 @@ export default function Login() {
                 <Typography>
                   {" "}
                   Don't have an account?
-                  <Link href="/signup"> Sign Up</Link>
+                  {/* <SignUp /> */}
+                  <Link href="/signup"> SignUp</Link>
                 </Typography>
               </Grid>
             </Container>

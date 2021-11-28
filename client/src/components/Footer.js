@@ -4,7 +4,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import { Grid } from "@mui/material";
+import { Grid, Avatar } from "@material-ui/core";
+import CameraIcon from "@mui/icons-material/PhotoCamera";
 
 export default function Footer() {
   return (
@@ -15,7 +16,9 @@ export default function Footer() {
         sx={{ bgcolor: "primary.main", color: "white" }}
         // color="white"
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" item align="center">
+          <CameraIcon />
+          &nbsp;
           <Typography variant="body1" textAlign="center">
             Copyright ©{" "}
             <Link

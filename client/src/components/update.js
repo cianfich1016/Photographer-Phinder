@@ -253,6 +253,7 @@ const Update = () => {
     ];
 
     const [photographerValues, setPhotographerValues] = useState({
+        // I think these need to be defined...
         username: "",
         email: "",
         password: "",

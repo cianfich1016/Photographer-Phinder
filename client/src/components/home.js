@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
-import { findByCategory, findByState } from '../utils/API'
+import { findByState } from '../utils/API'
 import SearchResults from './SearchResults';
 // import Paper from '@mui/material/Paper'
 

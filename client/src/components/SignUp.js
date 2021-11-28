@@ -16,7 +16,9 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { teal, indigo } from "@mui/material/colors";
+import Auth from '../utils/auth';
 import Profile from "./Profile";
+import { createProfile } from "../utils/API";
 
 const primary = indigo[500];
 const primaryLight = indigo[200];
@@ -270,6 +272,11 @@ const SignUp = () => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    // const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setValues({ ...values, [name]: value });
+    // };
+
     const handleClickShowPassword = () => {
         setValues({
             ...values,
@@ -281,9 +288,38 @@ const SignUp = () => {
         event.preventDefault();
     };
 
-    const handleFormSubmit = () => {
-        // This is a post route - create user
-    }
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await createProfile(values);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+
+            const { token, user } = await response.json();
+            console.log(user);
+            Auth.login(token);
+        } catch (err) {
+            console.error(err);
+        }
+        setValues({
+            username: "",
+            email: "",
+            password: "",
+            companyName: "",
+            bio: "",
+            photoType: "",
+            location: "",
+            link: "",
+            reservationCost: "",
+            image: "",
+        });
+        return (
+            <Profile results={values} />
+        );
+    };
 
     return (
         <Container
@@ -441,6 +477,7 @@ const SignUp = () => {
                         </p>
                         <Button
                             variant="contained"
+                            onClick={handleFormSubmit}
                             sx={{
                                 bgcolor: primaryDark,
                                 display: "flex",

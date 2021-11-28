@@ -344,7 +344,7 @@ const Update = () => {
                             id="outlined-required"
                             label="UserName required"
                             placeholder="UserName"
-                            value={photographerValues.userName}
+                            value={photographerValues.username}
                         />
                     </Grid>
                     <Grid item xs={4}>

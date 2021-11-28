@@ -1,5 +1,6 @@
 [
     {
+      "id": 1,
       "username": "simplyclass",
       "email": "simplyclass@test.com",
       "password": "ilovephotos",
@@ -12,6 +13,7 @@
       "image": "https://res.cloudinary.com/dndp5yqyt/image/upload/c_scale,w_200/v1637767371/PhotographerPhinder/Screen_Shot_2021-11-24_at_10.21.48_m1kyog.png"
     },
     {
+        "id": 2,
         "username": "petphotosrlife",
         "email": "bevinge711@gmail.com",
         "password": "bryanna123",
@@ -24,6 +26,7 @@
         "image": "https://res.cloudinary.com/dndp5yqyt/image/upload/c_scale,w_200/v1637767978/PhotographerPhinder/Screen_Shot_2021-11-24_at_10.29.46_qzuntr.png"
     },
     {
+        "id": 3,
         "username": "christierachelle",
         "email": "christie@christierachelle.com",
         "password": "photos123",

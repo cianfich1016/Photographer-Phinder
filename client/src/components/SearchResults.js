@@ -69,7 +69,7 @@ const SearchResults = (props) => {
                                 Name : Simply Class
                                 Specialty: Maternity
                             </Typography>
-                            <Button href="./Profile" onclick={handleFormSubmit}>Select</Button>
+                            <Button href="./Profile" onClick={handleFormSubmit}>Select</Button>
                         </CardContent>
                     </CardActionArea>
                     {/* <CardActions> */}

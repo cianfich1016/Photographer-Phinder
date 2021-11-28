@@ -16,6 +16,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { teal, indigo } from "@mui/material/colors";
+import { updateProfile } from "../utils/API";
 
 
 
@@ -278,13 +279,35 @@ const Update = () => {
         });
     };
 
-    const handleMouseDownPassword = (event) => {
+    const handleMouseDownPassword = async (event) => {
         event.preventDefault();
     };
 
-    const handleFormSubmit = () => {
-        // This is a put route - update profile
-    }
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+
+        if (!photographerValues) {
+            return false;
+        }
+
+        try {
+            const response = await updateProfile(photographerValues);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+
+            setPhotographerValues(response.data);;
+        } catch (err) {
+            console.error(err);
+        }
+        return (
+            <div>
+                {/* Pass our results to the Profile component */}
+                <Profile results={photographerValues} />
+            </div>
+        );
+    };
 
     return (
         <Container
@@ -454,8 +477,8 @@ const Update = () => {
                                 flexDirection: "flex-end",
                                 p: 2
                             }}>
-                            <Link href="/profile" underline="none" color="inherit">
-                                Create Your Profile
+                            <Link href="/profile" underline="none" color="inherit" onclick={handleFormSubmit}>
+                                Update Your Profile
                             </Link>
                         </Button>
                     </Grid>

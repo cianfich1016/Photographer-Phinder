@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import SearchResults from "./components/SearchResults";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
-
+import Update from "./components/Update"
 function App() {
   return (
     <>
@@ -20,6 +20,7 @@ function App() {
           <Route path="/searchresults" component={SearchResults} />
           <Route path="/profile" component={Profile} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/update" component={Update} />
           {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
         </Switch>
         <Footer />

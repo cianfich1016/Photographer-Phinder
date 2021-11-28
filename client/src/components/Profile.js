@@ -17,6 +17,8 @@ const primaryDark = indigo[900];
 const secondary = teal[500];
 const secondaryLight = teal[200];
 
+//This needs handlers for fetch calls to delete buttons need to be pathed to page to update page
+
 
 export default function TitlebarImageList() {
   return (
@@ -73,7 +75,8 @@ export default function TitlebarImageList() {
               border: primaryDark,
               borderStyle: "solid",
               borderWidth: "1px",
-            }} variant="outlined">Edit the post</Button>
+            }} href="/update"
+              variant="outlined">Edit the post</Button>
             <Button
               sx={{
                 bgcolor: primaryDark

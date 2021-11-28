@@ -1,17 +1,15 @@
-export const findByState = (token) => {
+export const findByState = () => {
     return fetch(' api/photographer/state', {
         headers: {
             'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
         },
     });
 };
 
-export const findByCategory = (token) => {
+export const findByCategory = () => {
     return fetch('api/photographer/category', {
         headers: {
             'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
         },
     });
 };

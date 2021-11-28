@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
-import { findByCategory, findByState } from '../utils/API'
+import { findByState } from '../utils/API'
 import SearchResults from './SearchResults';
 // import Paper from '@mui/material/Paper'
 
@@ -78,6 +78,14 @@ const HomePage = () => {
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
+            // const { items } = await response.json();
+
+            // const photographerData = items.map((photographer) => ({
+            //     id: photographer.id,
+            //     companyName: photographer.companyName,
+            //     image: photographer.image,
+            //     photoType: photographer.photoType
+            // }));
 
             setPhotographers(response.data);
             setSearch('');
@@ -92,7 +100,6 @@ const HomePage = () => {
         );
     };
 
-    // Need eventlistener on button click to make api call and change page?
 
     return (
         <Container maxWidth="xxl"

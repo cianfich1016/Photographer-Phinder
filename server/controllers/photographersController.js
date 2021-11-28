@@ -1,10 +1,10 @@
-const db = require("../models");
-
+// const db = require("../models");
+const Photographer = require("../models/photographer")
 // Defining methods for the photographersController
 module.exports = {
 
   async findAll(req, res) {
-    const profiles = await db.find({})
+    const profiles = await Photographer.find({})
 
     if (!profiles) {
       return res.status(400).json({ message: 'No profiles found' });
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   async findByState(req, res) {
-    const profiles = await db.find({ state: req.state });
+    const profiles = await Photographer.find({ state: req.state });
 
     if (!profiles) {
       res.status(400).json({ message: 'No photographers found in this state' });
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   async findByCategory(req, res) {
-    const profiles = await db.find({ category: req.category });
+    const profiles = await Photographer.find({ category: req.category });
 
     if (!profiles) {
       res.status(400).json({ message: 'No photographers available in this category' });
@@ -34,7 +34,7 @@ module.exports = {
   },
 
   async createProfile({ body }, res) {
-    const newProfile = await db.create(body);
+    const newProfile = await Photographer.create(body);
 
     if (!newProfile) {
       return res.status(400).json({ message: 'Something went wrong, unable to create profile' });
@@ -44,7 +44,7 @@ module.exports = {
   },
 
   async updateProfile(req, res) {
-    const profile = db.findOneAndUpdate({ _id = req.id }, req.body, { new: true }); //where id=, fields to update
+    const profile = Photographer.findOneAndUpdate({ _id = req.id }, req.body, { new: true }); //where id=, fields to update
 
     if (err) {
       res.status(500).json(err);
@@ -54,7 +54,7 @@ module.exports = {
   },
 
   async deleteProfile(req, res) {
-    const profile = await db.findOne({ id: req.id });
+    const profile = await Photographer.findOne({ id: req.id });
 
     if (!profile) {
       res.status(400).json({ message: 'No profile found with this id' });

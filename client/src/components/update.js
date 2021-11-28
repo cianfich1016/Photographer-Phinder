@@ -415,7 +415,7 @@ const Update = () => {
                             id="outlined-number"
                             label="Reservation Cost"
                             type="number"
-                            value={photographerValues.reservation}
+                            value={photographerValues.reservationCost}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -463,3 +463,5 @@ const Update = () => {
         </Container>
     );
 };
+
+export default Update

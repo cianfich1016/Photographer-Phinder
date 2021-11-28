@@ -17,6 +17,8 @@ const primaryDark = indigo[900];
 const secondary = teal[500];
 const secondaryLight = teal[200];
 
+//This needs handlers for fetch calls to delete buttons need to be pathed to page to update page
+
 
 export default function TitlebarImageList() {
   return (

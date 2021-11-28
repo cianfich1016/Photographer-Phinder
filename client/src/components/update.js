@@ -16,7 +16,8 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { teal, indigo } from "@mui/material/colors";
-import Profile from "./Profile";
+
+
 
 const primary = indigo[500];
 const primaryLight = indigo[200];
@@ -24,235 +25,234 @@ const primaryDark = indigo[900];
 const secondary = teal[500];
 const secondaryLight = teal[200];
 
-//this is a post
+const Update = () => {
+    const photoType = [
+        {
+            value: "Wedding",
+            label: "Wedding",
+        },
+        {
+            value: "Maternity",
+            label: "Maternity",
+        },
+        {
+            value: "Family",
+            label: "Family",
+        },
+        {
+            value: "HeadShot",
+            label: "HeadShot",
+        },
+        {
+            value: "Pet",
+            label: "Pet",
+        },
+        {
+            value: "Other",
+            label: "Other",
+        },
+    ];
 
-const photoType = [
-    {
-        value: "Wedding",
-        label: "Wedding",
-    },
-    {
-        value: "Maternity",
-        label: "Maternity",
-    },
-    {
-        value: "Family",
-        label: "Family",
-    },
-    {
-        value: "HeadShot",
-        label: "HeadShot",
-    },
-    {
-        value: "Pet",
-        label: "Pet",
-    },
-    {
-        value: "Other",
-        label: "Other",
-    },
-];
+    const locations = [
+        {
+            value: "Alabama",
+            label: "Alabama",
+        },
+        {
+            value: "Alaska",
+            label: "Alaska",
+        },
+        {
+            value: "Arizona",
+            label: "Arizona",
+        },
+        {
+            value: "Arkansas",
+            label: "Arkansas",
+        },
+        {
+            value: "California",
+            label: "California",
+        },
+        {
+            value: "Colorado",
+            label: "Colorado",
+        },
+        {
+            value: "Connecticut",
+            label: "Connecticut",
+        },
+        {
+            value: "Delaware",
+            label: "Delaware",
+        },
+        {
+            value: "Florida",
+            label: "Florida",
+        },
+        {
+            value: "Georgia",
+            label: "Georgia",
+        },
+        {
+            value: "Idaho",
+            label: "Idaho",
+        },
+        {
+            value: "Illinois",
+            label: "Illinois",
+        },
+        {
+            value: "Indiana",
+            label: "Indiana",
+        },
+        {
+            value: "Iowa",
+            label: "Iowa",
+        },
+        {
+            value: "Kansas",
+            label: "Kansas",
+        },
+        {
+            value: "Kentucky",
+            label: "Kentucky",
+        },
+        {
+            value: "Maine",
+            label: "Maine",
+        },
+        {
+            value: "Maryland",
+            label: "Maryland",
+        },
+        {
+            value: "Massachusetts",
+            label: "Massachusetts",
+        },
+        {
+            value: "Michigan",
+            label: "Michigan",
+        },
+        {
+            value: "Minnesota",
+            label: "Minnesota",
+        },
+        {
+            value: "Mississippi",
+            label: "Mississippi",
+        },
+        {
+            value: "Missouri",
+            label: "Missouri",
+        },
+        {
+            value: "Montana",
+            label: "Montana",
+        },
+        {
+            value: "Nebraska",
+            label: "Nebraska",
+        },
+        {
+            value: "Nevada",
+            label: "Nevada",
+        },
+        {
+            value: "New Hampshire",
+            label: "New Hampshire",
+        },
+        {
+            value: "New Jersey",
+            label: "New Jersey",
+        },
+        {
+            value: "New Mexico",
+            label: "New Mexico",
+        },
+        {
+            value: "New York",
+            label: "New York",
+        },
+        {
+            value: "North Carolina",
+            label: "North Carolina",
+        },
+        {
+            value: "North Dakota",
+            label: "North Dakota",
+        },
+        {
+            value: "Ohio",
+            label: "Ohio",
+        },
+        {
+            value: "Oklahoma",
+            label: "Oklahoma",
+        },
+        {
+            value: "Oregon",
+            label: "Oregon",
+        },
+        {
+            value: "Pennsylvania",
+            label: "Pennsylvania",
+        },
+        {
+            value: "Rhode Island",
+            label: "Rhode Island",
+        },
+        {
+            value: "South Carolina",
+            label: "South Carolina",
+        },
+        {
+            value: "South Dakota",
+            label: "South Dakota",
+        },
+        {
+            value: "South Carolina",
+            label: "South Carolina",
+        },
+        {
+            value: "Tennessee",
+            label: "Tennessee",
+        },
+        {
+            value: "Texas",
+            label: "Texas",
+        },
+        {
+            value: "Utah",
+            label: "Utah",
+        },
+        {
+            value: "Vermont",
+            label: "Vermont",
+        },
+        {
+            value: "Virginia",
+            label: "Virginia",
+        },
+        {
+            value: "Washington",
+            label: "Washington",
+        },
+        {
+            value: "West Virginia",
+            label: "West Virginia",
+        },
+        {
+            value: "Wisconsin",
+            label: "Wisconsin",
+        },
+        {
+            value: "Wyoming",
+            label: "Wyoming",
+        },
+    ];
 
-const locations = [
-    {
-        value: "Alabama",
-        label: "Alabama",
-    },
-    {
-        value: "Alaska",
-        label: "Alaska",
-    },
-    {
-        value: "Arizona",
-        label: "Arizona",
-    },
-    {
-        value: "Arkansas",
-        label: "Arkansas",
-    },
-    {
-        value: "California",
-        label: "California",
-    },
-    {
-        value: "Colorado",
-        label: "Colorado",
-    },
-    {
-        value: "Connecticut",
-        label: "Connecticut",
-    },
-    {
-        value: "Delaware",
-        label: "Delaware",
-    },
-    {
-        value: "Florida",
-        label: "Florida",
-    },
-    {
-        value: "Georgia",
-        label: "Georgia",
-    },
-    {
-        value: "Idaho",
-        label: "Idaho",
-    },
-    {
-        value: "Illinois",
-        label: "Illinois",
-    },
-    {
-        value: "Indiana",
-        label: "Indiana",
-    },
-    {
-        value: "Iowa",
-        label: "Iowa",
-    },
-    {
-        value: "Kansas",
-        label: "Kansas",
-    },
-    {
-        value: "Kentucky",
-        label: "Kentucky",
-    },
-    {
-        value: "Maine",
-        label: "Maine",
-    },
-    {
-        value: "Maryland",
-        label: "Maryland",
-    },
-    {
-        value: "Massachusetts",
-        label: "Massachusetts",
-    },
-    {
-        value: "Michigan",
-        label: "Michigan",
-    },
-    {
-        value: "Minnesota",
-        label: "Minnesota",
-    },
-    {
-        value: "Mississippi",
-        label: "Mississippi",
-    },
-    {
-        value: "Missouri",
-        label: "Missouri",
-    },
-    {
-        value: "Montana",
-        label: "Montana",
-    },
-    {
-        value: "Nebraska",
-        label: "Nebraska",
-    },
-    {
-        value: "Nevada",
-        label: "Nevada",
-    },
-    {
-        value: "New Hampshire",
-        label: "New Hampshire",
-    },
-    {
-        value: "New Jersey",
-        label: "New Jersey",
-    },
-    {
-        value: "New Mexico",
-        label: "New Mexico",
-    },
-    {
-        value: "New York",
-        label: "New York",
-    },
-    {
-        value: "North Carolina",
-        label: "North Carolina",
-    },
-    {
-        value: "North Dakota",
-        label: "North Dakota",
-    },
-    {
-        value: "Ohio",
-        label: "Ohio",
-    },
-    {
-        value: "Oklahoma",
-        label: "Oklahoma",
-    },
-    {
-        value: "Oregon",
-        label: "Oregon",
-    },
-    {
-        value: "Pennsylvania",
-        label: "Pennsylvania",
-    },
-    {
-        value: "Rhode Island",
-        label: "Rhode Island",
-    },
-    {
-        value: "South Carolina",
-        label: "South Carolina",
-    },
-    {
-        value: "South Dakota",
-        label: "South Dakota",
-    },
-    {
-        value: "South Carolina",
-        label: "South Carolina",
-    },
-    {
-        value: "Tennessee",
-        label: "Tennessee",
-    },
-    {
-        value: "Texas",
-        label: "Texas",
-    },
-    {
-        value: "Utah",
-        label: "Utah",
-    },
-    {
-        value: "Vermont",
-        label: "Vermont",
-    },
-    {
-        value: "Virginia",
-        label: "Virginia",
-    },
-    {
-        value: "Washington",
-        label: "Washington",
-    },
-    {
-        value: "West Virginia",
-        label: "West Virginia",
-    },
-    {
-        value: "Wisconsin",
-        label: "Wisconsin",
-    },
-    {
-        value: "Wyoming",
-        label: "Wyoming",
-    },
-];
-const SignUp = () => {
-    const [values, setValues] = useState({
+    const [photographerValues, setPhotographerValues] = useState({
         username: "",
         email: "",
         password: "",
@@ -267,13 +267,13 @@ const SignUp = () => {
     });
 
     const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+        setPhotographerValues({ ...photographerValues, [prop]: event.target.value });
     };
 
     const handleClickShowPassword = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
+        setPhotographerValues({
+            ...photographerValues,
+            showPassword: !photographerValues.showPassword,
         });
     };
 
@@ -282,7 +282,7 @@ const SignUp = () => {
     };
 
     const handleFormSubmit = () => {
-        // This is a post route - create user
+        // This is a put route - update profile
     }
 
     return (
@@ -319,6 +319,7 @@ const SignUp = () => {
                             id="outlined-required"
                             label="UserName required"
                             placeholder="UserName"
+                            value={photographerValues.userName}
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -327,6 +328,7 @@ const SignUp = () => {
                             id="outlined-required"
                             label="Email required"
                             placeholder="Email"
+                            value={photographerValues.email}
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -338,8 +340,8 @@ const SignUp = () => {
 
                                 required
                                 id="outlined-adornment-password"
-                                type={values.showPassword ? "text" : "password"}
-                                value={values.password}
+                                type={photographerValues.showPassword ? "text" : "password"}
+                                value={photographerValues.password}
                                 onChange={handleChange("password")}
                                 endAdornment={
                                     <InputAdornment position="end">
@@ -349,7 +351,7 @@ const SignUp = () => {
                                             onMouseDown={handleMouseDownPassword}
                                             edge="end"
                                         >
-                                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                            {photographerValues.showPassword ? <VisibilityOff /> : <Visibility />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -362,6 +364,7 @@ const SignUp = () => {
                             id="outlined-basic"
                             label="Company Name"
                             variant="outlined"
+                            value={photographerValues.companyName}
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -369,7 +372,7 @@ const SignUp = () => {
                             id="outlined-select-photo"
                             select
                             label="Select"
-                            value={values.photoType}
+                            value={photographerValues.photoType}
                             onChange={handleChange}
                             helperText="Please select your specialty"
                         >
@@ -385,7 +388,7 @@ const SignUp = () => {
                             id="outlined-select-location"
                             select
                             label="Select"
-                            value={values.location}
+                            value={photographerValues.location}
                             onChange={handleChange}
                             helperText="Please select your state"
                         >
@@ -403,6 +406,7 @@ const SignUp = () => {
                             multiline
                             rows={10}
                             placeholder="www.yourwork.com"
+                            value={photographerValues.link}
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -411,6 +415,7 @@ const SignUp = () => {
                             id="outlined-number"
                             label="Reservation Cost"
                             type="number"
+                            value={photographerValues.reservation}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -425,6 +430,7 @@ const SignUp = () => {
                             multiline
                             rows={10}
                             placeholder="Tell us about you..."
+                            value={photographerValues.bio}
                         />
                     </Grid>
                     <Grid item xs={12}
@@ -457,5 +463,3 @@ const SignUp = () => {
         </Container>
     );
 };
-
-export default SignUp;

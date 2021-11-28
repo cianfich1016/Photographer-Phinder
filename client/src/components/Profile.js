@@ -75,7 +75,8 @@ export default function TitlebarImageList() {
               border: primaryDark,
               borderStyle: "solid",
               borderWidth: "1px",
-            }} variant="outlined">Edit the post</Button>
+            }} href="/update"
+              variant="outlined">Edit the post</Button>
             <Button
               sx={{
                 bgcolor: primaryDark

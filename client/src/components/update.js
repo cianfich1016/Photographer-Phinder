@@ -17,6 +17,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { teal, indigo } from "@mui/material/colors";
 import { updateProfile } from "../utils/API";
+import Profile from "./Profile"
 
 
 
@@ -291,7 +292,7 @@ const Update = () => {
         }
 
         try {
-            const response = await updateProfile(photographerValues);
+            const response = updateProfile(photographerValues);
 
             if (!response.ok) {
                 throw new Error('something went wrong!');

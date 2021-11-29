@@ -12,6 +12,12 @@ import Link from "@mui/material/Link";
 import { teal, indigo } from '@mui/material/colors';
 import { findByState } from '../utils/API'
 import SearchResults from './SearchResults';
+import Profile from "./Profile"
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { Typography } from '@mui/material';
+import { CardActionArea, CardActions } from '@mui/material';
 // import Paper from '@mui/material/Paper'
 
 
@@ -78,24 +84,52 @@ const HomePage = () => {
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
-            // const { items } = await response.json();
+            const { items } = await response.json();
 
-            // const photographerData = items.map((photographer) => ({
-            //     id: photographer.id,
-            //     companyName: photographer.companyName,
-            //     image: photographer.image,
-            //     photoType: photographer.photoType
-            // }));
+            const photographerData = items.map((photographer) => ({
+                id: photographer.id,
+                companyName: photographer.companyName,
+                image: photographer.image,
+                photoType: photographer.photoType
+            }));
 
-            setPhotographers(response.data);
+            setPhotographers(photographerData);
             setSearch('');
+        } catch (err) {
+            console.error(err);
+        }
+        // return (
+        //     <div>
+        //         {/* Pass our results to the SearchResults component to map over */}
+        //         <SearchResults results={} />
+        //     </div>
+        // );
+    };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        const choosePhotographer = photographers.find((photographer) => photographer.photographer.id === photographer.id);
+
+
+        if (!photographers) {
+            return false;
+        }
+
+        try {
+            const response = await /* fetch call for single profile*/(choosePhotographer);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            setPhotographers(choosePhotographer.id);
         } catch (err) {
             console.error(err);
         }
         return (
             <div>
-                {/* Pass our results to the SearchResults component to map over */}
-                <SearchResults results={photographers} />
+                {/* Pass our results to the Profile component to display*/}
+                <Profile results={photographers} />
             </div>
         );
     };
@@ -168,7 +202,7 @@ const HomePage = () => {
                     }}>
                         <form>
                             <FormControl className="state"
-                                onSubmit={handleLocationFormSubmit}
+                                // onSubmit={handleLocationFormSubmit}
                                 sx={{ m: 1, minWidth: 120 }}>
                                 <h1>Search Photographes by State</h1>
                                 <InputLabel id="demo-simple-select-helper-label"></InputLabel>
@@ -234,13 +268,14 @@ const HomePage = () => {
                                     <MenuItem value={"Wyoming"}>Wyoming</MenuItem>
                                 </Select>
                                 <FormHelperText>Location</FormHelperText>
-                                <Link href="/searchresults">
-                                    <Button variant="contained"
-                                        sx={{
-                                            bgcolor: primaryDark,
-                                        }}> Search
-                                    </Button>
-                                </Link>
+                                {/* <Link href="/searchresults"> */}
+                                <Button variant="contained"
+                                    onClick={handleLocationFormSubmit}
+                                    sx={{
+                                        bgcolor: primaryDark,
+                                    }}> Search
+                                </Button>
+                                {/* </Link> */}
                             </FormControl>
                         </form>
                     </Box>
@@ -280,32 +315,72 @@ const HomePage = () => {
                         <p> Not sure how to start?Photographer Phinder can help narrow the field, just let us know either what state you are looking
                             to find a talented photographer or what type of photography you're looking for. We categorize our photographers by their identified
                             specialty, choose from:
-                            <ul>
-                                <li>
-                                    Wedding - Often our wedding photgraphers are also an excellent option if you're looking for engagement photos as well!
-                                </li>
-                                <li>
-                                    Maternity/Baby - Looking for someone to caputre Baby before and after the birth?This is where you want to be!
-                                </li>
-                                <li>
-                                    Family - Whether it's you and your significant other, or you and the kids, even the entire extended family, we've got you covered
-                                    with our Family Photographers
-                                </li>
-                                <li>
-                                    Head Shot - Corporate or Artistic, there are many talented headshot photgraphers in you area!
-                                </li>
-                                <li>
-                                    Pet - Don't think that this is just limited to your pup and kitten, you got a horse a pig or even a snake - I'm sure we've got someone
-                                    who'd love to snap their portrait.
-                                </li>
-                                <li>
-                                    Other - Something off the beaten path?Maybe your home, car, or airplane - you might be looking for someone right here!
-                                </li>
-                            </ul>
-                            Odds are you'll find the perfect person amoung our talented professionals!
                         </p>
+                        <ul>
+                            <li>
+                                Wedding - Often our wedding photgraphers are also an excellent option if you're looking for engagement photos as well!
+                            </li>
+                            <li>
+                                Maternity/Baby - Looking for someone to caputre Baby before and after the birth?This is where you want to be!
+                            </li>
+                            <li>
+                                Family - Whether it's you and your significant other, or you and the kids, even the entire extended family, we've got you covered
+                                with our Family Photographers
+                            </li>
+                            <li>
+                                Head Shot - Corporate or Artistic, there are many talented headshot photgraphers in you area!
+                            </li>
+                            <li>
+                                Pet - Don't think that this is just limited to your pup and kitten, you got a horse a pig or even a snake - I'm sure we've got someone
+                                who'd love to snap their portrait.
+                            </li>
+                            <li>
+                                Other - Something off the beaten path?Maybe your home, car, or airplane - you might be looking for someone right here!
+                            </li>
+                        </ul>
+                        <p> Odds are you'll find the perfect person amoung our talented professionals!</p>
                     </div>
                 </Box>
+            </Grid>
+            <Grid item xs={12}>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    p: 1,
+                    m: 1,
+                    bgcolor: primaryLight,
+                    borderStyle: "solid",
+                    borderColor: primaryDark,
+                    borderWidth: "5px",
+                    borderRadius: "10px"
+                }}>
+                    {
+                        photographers.map((photographer) => (
+                            <Card sx={{ maxWidth: 345 }} key={photographer.id}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        height="140"
+                                        image={photographer.image}
+                                        alt=""
+                                    />
+                                    <CardContent sx={{
+                                        bgcolor: primaryLight
+                                    }}>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Name : {photographer.companyName}
+                                            Specialty: {photographer.photoType}
+                                        </Typography>
+                                        <Button href="./Profile" onClick={handleFormSubmit}>Select</Button>
+                                    </CardContent>
+                                </CardActionArea>
+                                {/* <CardActions> */}
+                                {/* </CardActions> */}
+                            </Card>
+                        ))
+                    }
+                </Box>
+
             </Grid>
         </Container >
     );

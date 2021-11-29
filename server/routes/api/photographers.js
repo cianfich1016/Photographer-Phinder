@@ -4,8 +4,11 @@ const {findAll,
   findByState, 
   createProfile, 
   updateProfile, 
-  deleteProfile
+  deleteProfile,
+  login
 } = require("../../controllers/photographersController");
+
+router.route('/login').post(login);
 
 // api/photographer
 router.route('/').get(findAll);
@@ -17,7 +20,7 @@ router.route('/state').get(findByState);
 router.route('/category').get(findByCategory);
 
 // api/photographer/update
-router.route('/upate').put(updateProfile);
+router.route('/update').put(updateProfile);
 
 // api/photographer/
 router.route('/create').post(createProfile);

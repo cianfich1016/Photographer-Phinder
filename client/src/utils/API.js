@@ -1,3 +1,13 @@
+export const loginUser = (userData) => {
+    return fetch('/api/photographer/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+  };
+
 export const findByState = () => {
     return fetch(' api/photographer/state', {
         headers: {

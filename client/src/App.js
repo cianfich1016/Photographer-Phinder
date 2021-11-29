@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import SearchResults from "./components/SearchResults";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
-import Update from "./components/Update"
+import Update from "./components/update"
 function App() {
   return (
     <>

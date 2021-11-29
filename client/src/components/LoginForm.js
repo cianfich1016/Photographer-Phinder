@@ -18,6 +18,7 @@ import { InputLabel } from "@mui/material";
 import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
+import { loginUser } from '../utils/API';
 
 import { teal, indigo } from '@mui/material/colors';
 const secondaryLight = teal[200]
@@ -48,20 +49,21 @@ export default function Login() {
     //   alert("Incorrect Credentials!");
     // }
 
-    // try {
-    //   const response = await loginUser(userFormData);
+     try {
+       const response = await loginUser(userFormData);
 
-    //   if (!response.ok) {
-    //     throw new Error("something went wrong!");
-    //   }
+       if (!response.ok) {
+         throw new Error("something went wrong!");
+       }
 
     //   const { token, user } = await response.json();
     //   console.log(user);
     //   Auth.login(token);
-    // } catch (err) {
-    //   console.error(err);
+     } catch (err) {
+       console.error(err);
     //   setShowAlert(true);
-    // }
+     }
+     
     setUserFormData({
       username: "",
       email: "",

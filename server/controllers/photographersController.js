@@ -1,7 +1,20 @@
 // const db = require("../models");
-const Photographer = require("../models/photographer")
+const {Photographer} = require("../models")
 // Defining methods for the photographersController
 module.exports = {
+
+  async login({ body }, res) {
+    const user = await Photographer.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+    if (!user) {
+      return res.status(400).json({ message: "Can't find this user" });
+    }
+
+    const correctPw = await user.isCorrectPassword(body.password);
+
+    if (!correctPw) {
+      return res.status(400).json({ message: 'Wrong password!' });
+    }
+  },
 
   async findAll(req, res) {
     const profiles = await Photographer.find({})

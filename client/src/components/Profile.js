@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Carousel from "react-material-ui-carousel";
+//import Carousel from "react-material-ui-carousel";
 // import CarouselSlide from "react-material-ui-carousel";
 import Link from "@mui/material/Link";
 import { teal, indigo } from "@mui/material/colors";
@@ -101,7 +101,7 @@ export default function TitlebarImageList() {
             paddingLeft: 90,
             m: 5
           }}>
-          <Carousel>
+          {/* <Carousel>
             {itemData.map((item, i) => (
               <div>
                 <Card>
@@ -122,7 +122,7 @@ export default function TitlebarImageList() {
                 </Card>
               </div>
             ))}
-          </Carousel>
+          </Carousel> */}
         </Box>
       </Container>
     </main >

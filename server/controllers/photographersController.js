@@ -1,19 +1,25 @@
 // const db = require("../models");
 const {Photographer} = require("../models")
+
+//const { signToken } = require('../utils/auth');
 // Defining methods for the photographersController
 module.exports = {
 
   async login({ body }, res) {
     const user = await Photographer.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });
     }
 
-    const correctPw = await user.isCorrectPassword(body.password);
+    // await user.isCorrectPassword(body.password).then(tocken => {console.log(tocken)});
+    // const correctPw = await user.isCorrectPassword(body.password);
 
-    if (!correctPw) {
-      return res.status(400).json({ message: 'Wrong password!' });
-    }
+    // if (!correctPw) {
+    //   return res.status(400).json({ message: 'Wrong password!' });
+    // }
+    // const token = signToken(user);
+    // res.json({ token, user });
   },
 
   async findAll(req, res) {
@@ -53,11 +59,12 @@ module.exports = {
       return res.status(400).json({ message: 'Something went wrong, unable to create profile' });
     }
 
-    res.json(newProfile);
+    const token = signToken(newProfile);
+    res.json({ token, newProfile });
   },
 
   async updateProfile(req, res) {
-    const profile = Photographer.findOneAndUpdate({ _id = req.id }, req.body, { new: true }); //where id=, fields to update
+    const profile = Photographer.findOneAndUpdate({ _id : req.id }, req.body, { new: true }); //where id=, fields to update
 
     if (err) {
       res.status(500).json(err);

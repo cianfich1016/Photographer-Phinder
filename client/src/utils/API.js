@@ -1,4 +1,5 @@
 export const loginUser = (userData) => {
+    console.log(userData)
     return fetch('/api/photographer/login', {
       method: 'POST',
       headers: {

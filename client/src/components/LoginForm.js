@@ -19,6 +19,7 @@ import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
 import { loginUser } from '../utils/API';
+//import Auth from '../utils/auth';
 
 import { teal, indigo } from '@mui/material/colors';
 const secondaryLight = teal[200]
@@ -56,16 +57,16 @@ export default function Login() {
          throw new Error("something went wrong!");
        }
 
-    //   const { token, user } = await response.json();
-    //   console.log(user);
-    //   Auth.login(token);
+    //    const { token, user } = await response.json();
+    // //   console.log(user);
+    //    Auth.login(token);
      } catch (err) {
        console.error(err);
     //   setShowAlert(true);
      }
      
     setUserFormData({
-      username: "",
+      
       email: "",
       password: "",
     });
@@ -126,7 +127,7 @@ export default function Login() {
                           type="email"
                           placeholder="Email"
                           fullWidth
-                          name="username"
+                          name="email"
                           variant="outlined"
                           // value={this.state.username}
                           onChange={handleInputChange}

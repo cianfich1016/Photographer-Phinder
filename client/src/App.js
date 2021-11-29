@@ -14,21 +14,36 @@ import Checkout from "./pages/Checkout/CheckoutPage/Checkout";
 import { commerce } from "./lib/commerce";
 
 function App() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMess, setErrorMess] = useState("");
+  const [categories, setCategories] = useState([]);
 
-  const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-    setProducts(data);
-    console.log(data);
+  const fetchCategories = async () => {
+    const { data: products } = await commerce.products.list();
+    const { data: categoriesData } = await commerce.categories.list();
+    const productsPerCat = categoriesData.reduce((acc, category) => {
+      return [
+        ...acc,
+        {
+          ...category,
+          productsData: products.filter((product) =>
+            product.categories.find((cat) => cat.id === category.id)
+          ),
+        },
+      ];
+    }, []);
+    setCategories(productsPerCat);
+    console.log(productsPerCat);
   };
+
   const fetchCart = async () => {
     const data = await commerce.cart.retrieve();
     setCart(data);
     console.log(data);
   };
+
   const handleAddToCart = async (product_id, quantity) => {
     console.log(product_id);
     const item = await commerce.cart.add(product_id, quantity);
@@ -66,21 +81,24 @@ function App() {
     }
   };
   useEffect(() => {
-    fetchProducts();
+    // fetchProducts();
     fetchCart();
+    fetchCategories();
   }, []);
   return (
     <>
       <Router>
         <Navbar totalItems={cart.total_items} />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/">
+            <HomePage categories={categories} onAddToCart={handleAddToCart} />
+          </Route>
           <Route path="/login" component={Login} />
           <Route path="/search" component={SearchResults} />
           <Route path="/signup" component={SignUp} />
           <Route path="/profile" component={Profile} />
           <Route exact path="/products">
-            <Products products={products} onAddToCart={handleAddToCart} />
+            <Products categories={categories} onAddToCart={handleAddToCart} />
           </Route>
           <Route exact path="/cart">
             <Cart

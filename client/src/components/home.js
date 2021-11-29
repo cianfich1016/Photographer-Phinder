@@ -8,47 +8,117 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+// import Link from "@mui/material/Link";
 import { teal, indigo } from "@mui/material/colors";
+import { findByCategory, findByState } from "../utils/API";
+import SearchResults from "./SearchResults";
+import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
+import { commerce } from "../lib/commerce";
 
 const primary = indigo[500];
+const primaryLight = indigo[200];
 const primaryDark = indigo[900];
 const secondary = teal[500];
 const secondaryLight = teal[200];
 
-const HomePage = () => {
-  const [photoType, setPhotoType] = useState("Wedding");
-  const [location, setLocation] = useState("Alabama");
+const HomePage = ({ products }) => {
+  const [search, setSearch] = useState("");
+  // // const [photoType, setPhotoType] = useState('');
+  // // const [location, setLocation] = useState('');
 
-  const handleTypeChange = (event) => {
-    setPhotoType(event.target.value);
-    //fetch call and page change
-  };
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value);
-    //fetch call and page change
+  const [photographers, setPhotographers] = useState([]);
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
   };
 
+  // // const handleLocationChange = (event) => {
+  // //     setLocation(event.target.value);
+  // //     //fetch call and page change
+  // // };
+
+  const handleTypeFormSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!search) {
+      return false;
+    }
+
+    try {
+      const response = await commerce.products.list({
+        category_slug: [search],
+      });
+      console.log(response);
+      if (!response.ok) {
+        throw new Error("something went wrong!");
+      }
+      setPhotographers(response.data);
+      setSearch("");
+    } catch (err) {
+      console.error(err);
+    }
+    return (
+      <div>
+        {/* Pass our results to the SearchResults component to map over */}
+        <SearchResults results={photographers} />
+      </div>
+    );
+  };
+
+  // const handleLocationFormSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   if (!search) {
+  //     return false;
+  //   }
+
+  //   try {
+  //     const response = await findByState(search);
+
+  //     if (!response.ok) {
+  //       throw new Error("something went wrong!");
+  //     }
+
+  //     setPhotographers(response.data);
+  //     setSearch("");
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  //   return (
+  //     <div>
+  //       {/* Pass our results to the SearchResults component to map over */}
+  //       <SearchResults results={photographers} />
+  //     </div>
+  //   );
+  // };
   // Need eventlistener on button click to make api call and change page?
 
   return (
     <Container
+      maxWidth="xxl"
       sx={{
         bgcolor: secondaryLight,
-        color: "white",
       }}
     >
       <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 4, md: 6 }}>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               p: 1,
               m: 1,
-              bgcolor: primary,
+              bgcolor: primaryLight,
+              borderStyle: "solid",
+              borderColor: primaryDark,
+              borderWidth: "5px",
+              borderRadius: "10px",
             }}
           >
             <FormControl
+              className="type"
+              onSubmit={handleTypeFormSubmit}
               sx={{
                 m: 1,
                 minWidth: 120,
@@ -59,13 +129,17 @@ const HomePage = () => {
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={photoType}
+                value={search}
                 label="photoType"
-                onChange={handleTypeChange}
+                variant="outlined"
+                onChange={handleSearchChange}
               >
                 <MenuItem value="Type">
                   <em>None</em>
                 </MenuItem>
+                {/* {categories.map((category) => (
+                  <MenuItem key={category.id}>{category.name}</MenuItem>
+                ))} */}
                 <MenuItem value={"Wedding"}>Wedding</MenuItem>
                 <MenuItem value={"Maternity"}>Maternity</MenuItem>
                 <MenuItem value={"Family"}>Family</MenuItem>
@@ -76,35 +150,44 @@ const HomePage = () => {
               <FormHelperText>Photography Type</FormHelperText>
               <Button
                 variant="contained"
-                href="######alskdfjslkafhwoiefnw"
                 sx={{
                   bgcolor: primaryDark,
                 }}
+                // component={Link}
+                // to="/"
               >
                 Search
               </Button>
             </FormControl>
           </Box>
         </Grid>
-        <Grid item xs={6}>
+        {/* <Grid item xs={6}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               p: 1,
               m: 1,
-              bgcolor: primary,
+              bgcolor: primaryLight,
+              borderStyle: "solid",
+              borderColor: primaryDark,
+              borderWidth: "5px",
+              borderRadius: "10px",
             }}
           >
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl
+              className="state"
+              onSubmit={handleLocationFormSubmit}
+              sx={{ m: 1, minWidth: 120 }}
+            >
               <h1>Location by State</h1>
               <InputLabel id="demo-simple-select-helper-label"></InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={location}
+                value={search}
                 label="location"
-                onChange={handleLocationChange}
+                onChange={handleSearchChange}
               >
                 <MenuItem value="Location">
                   <em>None</em>
@@ -163,36 +246,19 @@ const HomePage = () => {
               <FormHelperText>Location</FormHelperText>
               <Button
                 variant="contained"
-                href="####alskdfjslkafhwoiefnw"
                 sx={{
                   bgcolor: primaryDark,
                 }}
+                component={Link}
+                to="/searchresults"
               >
+                {" "}
                 Search
               </Button>
             </FormControl>
           </Box>
-        </Grid>
+        </Grid> */}
       </Grid>
-      <Grid item xs={12}>
-        <Container>
-          <div className="imageRow">
-            <img
-              src="/image/pexels-andre-furtado-1264210.jpg"
-              alt="Woman with Camera"
-            ></img>
-            <img
-              src="/image/pexels-element-digital-1051076.jpg"
-              alt="Woman with Camera"
-            ></img>
-            <img
-              src="/image/pexels-hamann-la-947785.jpg"
-              alt="Woman with Camera"
-            ></img>
-          </div>
-        </Container>
-      </Grid>
-
       <Grid item xs={12}>
         <Box
           sx={{
@@ -200,11 +266,77 @@ const HomePage = () => {
             justifyContent: "center",
             p: 1,
             m: 1,
-            bgcolor: primary,
-            color: "white",
+            bgcolor: primaryLight,
+            borderStyle: "solid",
+            borderColor: primaryDark,
+            borderWidth: "5px",
+            borderRadius: "10px",
           }}
         >
-          <div>
+          <FormControl
+            className="type"
+            onSubmit={handleTypeFormSubmit}
+            sx={{
+              m: 1,
+              minWidth: 120,
+            }}
+          >
+            <h1> Just want to see all photographer available ?</h1>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: primaryDark,
+              }}
+              component={Link}
+              to="/products"
+            >
+              All Photographers
+            </Button>
+          </FormControl>
+        </Box>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+          }}
+        >
+          <img
+            className="homeImage"
+            src="/image/pexels-andre-furtado-1264210.jpg"
+            alt="Woman with Camera"
+          ></img>
+          <img
+            className="homeImage"
+            src="/image/pexels-hamann-la-947785.jpg"
+            alt="Woman with Camera"
+          ></img>
+          <img
+            className="homeImage"
+            src="/image/pexels-element-digital-1051076.jpg"
+            alt="Woman with Camera"
+          ></img>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            p: 1,
+            m: 1,
+            bgcolor: primaryLight,
+            borderStyle: "solid",
+            borderColor: primaryDark,
+            borderWidth: "5px",
+            borderRadius: "10px",
+          }}
+        >
+          <div className="homepagetext">
             <h1>
               {" "}
               Let us help you capture the perfect photographer to capture your

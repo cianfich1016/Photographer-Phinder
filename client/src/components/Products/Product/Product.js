@@ -51,7 +51,7 @@ const Product = ({ photo, onAddToCart, categoryName }) => {
           variant="body2"
         />
         <PopupButton
-          url={`https://calendly.com/${str}`}
+          url={`https://calendly.com/roseluu`}
           text="Select appointment day"
         />
       </CardContent>

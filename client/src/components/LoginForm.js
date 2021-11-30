@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Paper,
@@ -19,12 +19,13 @@ import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
 import SignUp from "./SignUp";
-import { loginUser } from '../utils/API';
-//import Auth from '../utils/auth';
+import { loginUser } from "../utils/API";
+import Auth from "../utils/auth";
+// import { useHistory } from "react-router-dom";
 
-import { teal, indigo } from '@mui/material/colors';
-const secondaryLight = teal[200]
-const primary = indigo[500]
+import { teal, indigo } from "@mui/material/colors";
+const secondaryLight = teal[200];
+const primary = indigo[500];
 
 export default function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
@@ -34,6 +35,12 @@ export default function Login() {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
+  // const history = useHistory();
+  // useEffect(() => {
+  //   if (localStorage.getItem("user-info")) {
+  //     history.push("/add");
+  //   }
+  // }, []);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -44,30 +51,24 @@ export default function Login() {
       event.stopPropagation();
     }
     console.log(userFormData);
+    try {
+      const response = await loginUser(userFormData);
+      console.log({ userFormData });
+      console.log("hhhh", response);
+      console.log("Rose");
+      if (!response.ok) {
+        throw new Error("something went wrong!");
+      }
+      console.log("line 60");
+      const { token, user } = await response.json();
+      console.log(user);
+      Auth.login(token);
+    } catch (err) {
+      console.error(err);
+      //   setShowAlert(true);
+    }
 
-    // if (form.email === "admin@littech.in" && form.password === "secret") {
-    //   this.props.history.push("/home");
-    // } else {
-    //   alert("Incorrect Credentials!");
-    // }
-
-     try {
-       const response = await loginUser(userFormData);
-
-       if (!response.ok) {
-         throw new Error("something went wrong!");
-       }
-
-    //    const { token, user } = await response.json();
-    // //   console.log(user);
-    //    Auth.login(token);
-     } catch (err) {
-       console.error(err);
-    //   setShowAlert(true);
-     }
-     
     setUserFormData({
-      
       email: "",
       password: "",
     });
@@ -79,10 +80,12 @@ export default function Login() {
     margin: "30px auto",
   };
   return (
-    <Container maxWidth="xxl"
+    <Container
+      maxWidth="xxl"
       sx={{
         bgcolor: secondaryLight,
-      }}>
+      }}
+    >
       <div>
         <Grid
           container
@@ -116,20 +119,22 @@ export default function Login() {
                 &nbsp;
                 <Grid item>
                   <form
-                    //   noValidate
-                    //   validated={validated}
+                    noValidate
+                    validated={validated}
                     onSubmit={handleFormSubmit}
                   >
                     <Grid container direction="column" spacing={2}>
                       <Grid item>
-                        <TextField sx={{
-                          color: primary
-                        }}
+                        <TextField
+                          sx={{
+                            color: primary,
+                          }}
                           type="email"
                           placeholder="Email"
                           fullWidth
                           name="email"
                           variant="outlined"
+                          value={userFormData.email}
                           // value={this.state.username}
                           onChange={handleInputChange}
                           required
@@ -139,7 +144,7 @@ export default function Login() {
                       <Grid item>
                         <TextField
                           sx={{
-                            color: primary
+                            color: primary,
                           }}
                           type="password"
                           placeholder="Password"
@@ -147,11 +152,15 @@ export default function Login() {
                           name="password"
                           variant="outlined"
                           onChange={handleInputChange}
+                          value={userFormData.password}
                           required
                         />
                       </Grid>
                       <Grid item>
                         <Button
+                          disabled={
+                            !(userFormData.email && userFormData.password)
+                          }
                           variant="contained"
                           color="primary"
                           type="submit"

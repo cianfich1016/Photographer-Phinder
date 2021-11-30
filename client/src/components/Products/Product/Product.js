@@ -21,7 +21,7 @@ const Product = ({ photo, onAddToCart, categoryName }) => {
     .replace(/[&\!/\\#,+()$~%.'":*?<>{}]/g, "")
     .toLowerCase();
   // str.split(" ").join("").toLowerCase();
-  const url = `https://calendly.com/roseluu`;
+  const url = `https://calendly.com/${str}`;
   console.log(url);
   return (
     <Card className={classes.root}>
@@ -51,7 +51,7 @@ const Product = ({ photo, onAddToCart, categoryName }) => {
           variant="body2"
         />
         <PopupButton
-          url={`https://calendly.com/roseluu`}
+          url={`https://calendly.com/${str}`}
           text="Select appointment day"
         />
       </CardContent>

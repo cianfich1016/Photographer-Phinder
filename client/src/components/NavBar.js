@@ -20,6 +20,14 @@ import Auth from "../utils/auth";
 import { commerce } from "../lib/commerce";
 import Link from "@mui/material/Link";
 import { useLocation } from "react-router-dom";
+import { teal, indigo } from '@mui/material/colors';
+
+const primary = indigo[500]
+const primaryLight = indigo[200]
+const primaryDark = indigo[900]
+const secondary = teal[500]
+const secondaryLight = teal[200]
+const secondaryDark = teal[700]
 
 export default function PrimarySearchAppBar({ totalItems }) {
   const location = useLocation();
@@ -80,8 +88,10 @@ export default function PrimarySearchAppBar({ totalItems }) {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ background: "primary" }}>
+      <Box sx={{
+        flexGrow: 1
+      }}>
+        <AppBar position="static" style={{ background: secondaryDark }}>
           <Toolbar>
             <Typography>
               <Link

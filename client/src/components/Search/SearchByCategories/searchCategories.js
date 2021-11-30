@@ -1,8 +1,7 @@
 import { FormControl, Select, MenuItem } from "@material-ui/core";
-import "./style.css";
+// import "./style.css";
 
 const SelectCategories = ({ selectedCategory, categories, onChange }) => {
-  
   return (
     <>
       <FormControl className="formControl">

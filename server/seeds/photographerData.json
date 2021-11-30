@@ -1,9 +1,10 @@
 [
     {
+      "id": 1,
       "username": "simplyclass",
       "email": "simplyclass@test.com",
       "password": "ilovephotos",
-      "compnayName": "Simply Class Photography",
+      "companyName": "Simply Class Photography",
       "bio": "Hello! My name is Amy Olson, and I grew up in a small town in Southeastern Minnesota. I currently live just north of Rochester, Minnesota with my husband. My passion for photography began at a young age when I was constantly taking photos of family and friends. I finally made it a career, and after several years of experience in portrait photography, Simply Class was established in 2010. I specialize in natural light photography for all types of sessions including weddings, seniors, families, and newborns. I thrive on the excitement of each event, capturing those perfect and special moments with creativity and class. I offer high-end digital photography and am available nationwide and for destination weddings. Please contact me by phone or email for more information. I'd love to enjoy a cup of coffee with you to discuss details.",
       "photoType": "Family",
       "location": "Minnesota",
@@ -12,6 +13,7 @@
       "image": "https://res.cloudinary.com/dndp5yqyt/image/upload/c_scale,w_200/v1637767371/PhotographerPhinder/Screen_Shot_2021-11-24_at_10.21.48_m1kyog.png"
     },
     {
+        "id": 2,
         "username": "petphotosrlife",
         "email": "bevinge711@gmail.com",
         "password": "bryanna123",
@@ -24,6 +26,7 @@
         "image": "https://res.cloudinary.com/dndp5yqyt/image/upload/c_scale,w_200/v1637767978/PhotographerPhinder/Screen_Shot_2021-11-24_at_10.29.46_qzuntr.png"
     },
     {
+        "id": 3,
         "username": "christierachelle",
         "email": "christie@christierachelle.com",
         "password": "photos123",

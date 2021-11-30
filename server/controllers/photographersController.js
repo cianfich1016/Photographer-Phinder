@@ -1,63 +1,83 @@
-const db = require("../models");
+// const db = require("../models");
+const {Photographer} = require("../models")
 
+//const { signToken } = require('../utils/auth');
 // Defining methods for the photographersController
 module.exports = {
 
-  async findAll (req,res) {
-    const profiles = await db.find({})
-    
-    if(!profiles) {
-      return res.status(400).json({ message: 'No profiles found'});
+  async login({ body }, res) {
+    const user = await Photographer.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+
+    if (!user) {
+      return res.status(400).json({ message: "Can't find this user" });
+    }
+
+    // await user.isCorrectPassword(body.password).then(tocken => {console.log(tocken)});
+    // const correctPw = await user.isCorrectPassword(body.password);
+
+    // if (!correctPw) {
+    //   return res.status(400).json({ message: 'Wrong password!' });
+    // }
+    // const token = signToken(user);
+    // res.json({ token, user });
+  },
+
+  async findAll(req, res) {
+    const profiles = await Photographer.find({})
+
+    if (!profiles) {
+      return res.status(400).json({ message: 'No profiles found' });
     }
 
     res.json(profiles);
   },
 
-  async findByState (req,res) {
-    const profiles = await db.find({ state: req.state});
+  async findByState(req, res) {
+    const profiles = await Photographer.find({ state: req.state });
 
-    if(!profiles) {
-      res.status(400).json({ message: 'No photographers found in this state'});
+    if (!profiles) {
+      res.status(400).json({ message: 'No photographers found in this state' });
     }
 
     res.json(profiles);
   },
 
-  async findByCategory (req,res) {
-    const profiles = await db.find({ category: req.category });
+  async findByCategory(req, res) {
+    const profiles = await Photographer.find({ category: req.category });
 
-    if(!profiles) {
-      res.status(400).json({ message: 'No photographers available in this category'});
+    if (!profiles) {
+      res.status(400).json({ message: 'No photographers available in this category' });
     }
 
     res.json(profiles);
   },
 
-  async createProfile ({ body },res) {
-    const newProfile = await db.create(body);
+  async createProfile({ body }, res) {
+    const newProfile = await Photographer.create(body);
 
-    if(!newProfile) {
-      return res.status(400).json( {message: 'Something went wrong, unable to create profile'});
+    if (!newProfile) {
+      return res.status(400).json({ message: 'Something went wrong, unable to create profile' });
     }
 
-    res.json(newProfile);
+    const token = signToken(newProfile);
+    res.json({ token, newProfile });
   },
 
-  async updateProfile (req,res) {
-    const profile = db.findOneAndUpdate({ _id = req.id }, req.body, { new: true}); //where id=, fields to update
+  async updateProfile(req, res) {
+    const profile = Photographer.findOneAndUpdate({ _id : req.id }, req.body, { new: true }); //where id=, fields to update
 
-    if(err) {
+    if (err) {
       res.status(500).json(err);
     }
 
     res.json(profile);
   },
 
-  async deleteProfile (req,res) {
-    const profile = await db.findOne({ id: req.id});
+  async deleteProfile(req, res) {
+    const profile = await Photographer.findOne({ id: req.id });
 
-    if(!profile) {
-      res.status(400).json({ message: 'No profile found with this id'});
+    if (!profile) {
+      res.status(400).json({ message: 'No profile found with this id' });
     }
 
     res.json('Profile has been deleted');

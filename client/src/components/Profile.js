@@ -7,23 +7,26 @@ import CardMedia from "@mui/material/CardMedia";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Carousel from "react-material-ui-carousel";
+//import Carousel from "react-material-ui-carousel";
 // import CarouselSlide from "react-material-ui-carousel";
 import Link from "@mui/material/Link";
+import { teal, indigo } from "@mui/material/colors";
+const primary = indigo[500];
+const primaryLight = indigo[200];
+const primaryDark = indigo[900];
+const secondary = teal[500];
+const secondaryLight = teal[200];
+
+//This needs handlers for fetch calls to delete buttons need to be pathed to page to update page
+
 
 export default function TitlebarImageList() {
-  //   const cards = [1, 2, 3, 4, 5, 6];
   return (
     <main>
-      {/* Hero unit */}
-      <Box
-      // sx={{
-      //   bgcolor: "background.paper",
-      //   pt: 7,
-      //   pb: 5,
-      // }}
-      >
-        <Container maxWidth="lg">
+      <Container maxWidth="xxl" sx={{
+        bgcolor: secondaryLight,
+      }}>
+        <Box>
           <Typography
             component="h1"
             variant="h2"
@@ -31,27 +34,33 @@ export default function TitlebarImageList() {
             color="text.primary"
             gutterBottom
             paddingTop="20px"
+            sx={{
+              color: primaryDark
+            }}
           >
             Simply Class Photography
           </Typography>
           <Typography
-            variant="h6"
+            variant="h5"
             align="center"
             color="text.secondary"
             paragraph
+            sx={{
+              color: primaryDark
+            }}
           >
-            Hello! My name is Amy Olson, and I grew up in a small town in
-            Southeastern Minnesota. I currently live just north of Rochester,
-            Minnesota with my husband. My passion for photography began at a
+            Hello!My name is Amy Olson, and I grew up in a small town in
+            Southeastern Minnesota.I currently live just north of Rochester,
+            Minnesota with my husband.My passion for photography began at a
             young age when I was constantly taking photos of family and friends.
             I finally made it a career, and after several years of experience in
             portrait photography, Simply Class was established in 2010. I
             specialize in natural light photography for all types of sessions
-            including weddings, seniors, families, and newborns. I thrive on the
+            including weddings, seniors, families, and newborns.I thrive on the
             excitement of each event, capturing those perfect and special
-            moments with creativity and class. I offer high-end digital
+            moments with creativity and class.I offer high-end digital
             photography and am available nationwide and for destination
-            weddings. Please contact me by phone or email for more information.
+            weddings.Please contact me by phone or email for more information.
             I'd love to enjoy a cup of coffee with you to discuss details.
           </Typography>
           <Stack
@@ -60,70 +69,63 @@ export default function TitlebarImageList() {
             spacing={2}
             justifyContent="center"
           >
-            <Button variant="outlined">Edit the post</Button>
-            <Button variant="contained">More of my work</Button>
-            <Button variant="outlined">Connect with me</Button>
-            <Button variant="contained">Make appointment with me</Button>
+            <Button sx={{
+              bgcolor: primaryLight,
+              color: primaryDark,
+              border: primaryDark,
+              borderStyle: "solid",
+              borderWidth: "1px",
+            }} href="/update"
+              variant="outlined">Edit the post</Button>
+            <Button
+              sx={{
+                bgcolor: primaryDark
+              }} variant="contained">More of my work</Button>
+            <Button sx={{
+              bgcolor: primaryLight,
+              color: primaryDark,
+              border: primaryDark,
+              borderStyle: "solid",
+              borderWidth: "1px",
+            }} variant="outlined">Connect with me</Button>
+            <Button
+              sx={{
+                bgcolor: primaryDark
+              }} variant="contained">Make appointment with me</Button>
           </Stack>
-        </Container>
-      </Box>
-      <Container maxWidth="md">
-        {/* End hero unit */}
-        {/* <Grid container spacing={1}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
-              {itemData.map((item, i) => (
-                <Card
-                  key={i}
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
+
+        </Box>
+
+        <Box maxWidth="lg"
+          sx={{
+            paddingLeft: 90,
+            m: 5
+          }}>
+          {/* <Carousel>
+            {itemData.map((item, i) => (
+              <div>
+                <Card>
                   <CardMedia
                     component="img"
                     image={item.img}
                     title={item.title}
-                    alt="random"
+                  // style={{
+                  //   height: 1000,
+                  //   // paddingTop: "5%",
+                  //   width: 1000,
+                  // }}
                   />
                   <CardContent>
                     <Typography>{item.title}</Typography>
                     <Typography>{item.author}</Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
                 </Card>
-              ))}
-            </Grid>
-          ))}
-        </Grid> */}
-        <Carousel>
-          {itemData.map((item, i) => (
-            <div>
-              <Card>
-                <CardMedia
-                  component="img"
-                  image={item.img}
-                  title={item.title}
-                  style={{
-                    height: "80%",
-                    paddingTop: "5%",
-                    width: "600",
-                  }}
-                />
-                <CardContent>
-                  <Typography>{item.title}</Typography>
-                  <Typography>{item.author}</Typography>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </Carousel>
+              </div>
+            ))}
+          </Carousel> */}
+        </Box>
       </Container>
-    </main>
+    </main >
   );
 }
 

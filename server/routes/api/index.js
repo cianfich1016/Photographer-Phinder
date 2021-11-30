@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const photographerRoutes = require("./photographers");
 
-router.use("/photographers", photographerRoutes);
+router.use("/photographer", photographerRoutes);
 
 module.exports = router;

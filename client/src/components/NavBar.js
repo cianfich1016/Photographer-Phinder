@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 // import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -11,12 +11,15 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 // import MenuIcon from "@mui/icons-material/Menu";
-// import SearchIcon from "@mui/icons-material/Search";
 // import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Auth from "../utils/auth";
+import { commerce } from "../lib/commerce";
 import Link from "@mui/material/Link";
+import { useLocation } from "react-router-dom";
 import { teal, indigo } from '@mui/material/colors';
 
 const primary = indigo[500]
@@ -26,24 +29,11 @@ const secondary = teal[500]
 const secondaryLight = teal[200]
 const secondaryDark = teal[700]
 
-export default function PrimarySearchAppBar() {
-  // set modal display state
-
-  //   const [anchorEl, setAnchorEl] = useState(null);
+export default function PrimarySearchAppBar({ totalItems }) {
+  const location = useLocation();
+  const [totalItem, setTotalItem] = useState([]);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
-  //   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  //   const handleProfileMenuOpen = (event) => {
-  //     setAnchorEl(event.currentTarget);
-  //   };
-
-  //   const handleMenuClose = () => {
-  //     setAnchorEl(null);
-  //     setShowModal(true);
-  //     handleMobileMenuClose();
-  //   };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -53,26 +43,6 @@ export default function PrimarySearchAppBar() {
   };
 
   const menuId = "primary-search-account-menu";
-  //   const renderMenu = (
-  //     <Menu
-  //       anchorEl={anchorEl}
-  //       anchorOrigin={{
-  //         vertical: "top",
-  //         horizontal: "right",
-  //       }}
-  //       id={menuId}
-  //       keepMounted
-  //       transformOrigin={{
-  //         vertical: "top",
-  //         horizontal: "right",
-  //       }}
-  //       open={isMenuOpen}
-  //       onClose={handleMenuClose}
-  //     >
-  //       <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-  //       <MenuItem onClick={handleMenuClose}>SignUp</MenuItem>
-  //     </Menu>
-  //   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -93,8 +63,10 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem>
         <IconButton size="large" aria-label="" color="inherit">
-          <Badge badgeContent={1} color="error">
-            <ShoppingCartIcon />
+          <Badge badgeContent={totalItems} color="error">
+            <Link href="/cart" color="inherit">
+              <ShoppingCartIcon />
+            </Link>
           </Badge>
         </IconButton>
       </MenuItem>
@@ -128,20 +100,23 @@ export default function PrimarySearchAppBar() {
                 //   component="div"
                 color="inherit"
                 underline="hover"
-                onClick={() => {
-                  console.info("Prove this button work");
-                }}
+                href="/"
               >
                 {"Photographer Phinder"}
               </Link>
             </Typography>
+
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton size="large" aria-label="" color="inherit">
-                <Badge badgeContent={1} color="error">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
+              {location.pathname !== "/login" && (
+                <IconButton size="large" aria-label="" color="inherit">
+                  <Badge badgeContent={totalItems} color="error">
+                    <Link href="/cart" color="inherit">
+                      <ShoppingCartIcon />
+                    </Link>
+                  </Badge>
+                </IconButton>
+              )}
               &nbsp;
               <IconButton
                 size="large"

@@ -18,6 +18,7 @@ import { InputLabel } from "@mui/material";
 import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
+import SignUp from "./SignUp";
 import { loginUser } from '../utils/API';
 //import Auth from '../utils/auth';
 

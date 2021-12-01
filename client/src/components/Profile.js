@@ -19,13 +19,15 @@ const secondaryLight = teal[200];
 
 //This needs handlers for fetch calls to delete buttons need to be pathed to page to update page
 
-
 export default function TitlebarImageList() {
   return (
     <main>
-      <Container maxWidth="xxl" sx={{
-        bgcolor: secondaryLight,
-      }}>
+      <Container
+        maxWidth="xxl"
+        sx={{
+          bgcolor: secondaryLight,
+        }}
+      >
         <Box>
           <Typography
             component="h1"
@@ -35,7 +37,7 @@ export default function TitlebarImageList() {
             gutterBottom
             paddingTop="20px"
             sx={{
-              color: primaryDark
+              color: primaryDark,
             }}
           >
             Simply Class Photography
@@ -46,7 +48,7 @@ export default function TitlebarImageList() {
             color="text.secondary"
             paragraph
             sx={{
-              color: primaryDark
+              color: primaryDark,
             }}
           >
             Hello!My name is Amy Olson, and I grew up in a small town in
@@ -69,38 +71,44 @@ export default function TitlebarImageList() {
             spacing={2}
             justifyContent="center"
           >
-            <Button sx={{
-              bgcolor: primaryLight,
-              color: primaryDark,
-              border: primaryDark,
-              borderStyle: "solid",
-              borderWidth: "1px",
-            }} href="/update"
-              variant="outlined">Edit the post</Button>
             <Button
               sx={{
-                bgcolor: primaryDark
-              }} variant="contained">More of my work</Button>
-            <Button sx={{
-              bgcolor: primaryLight,
-              color: primaryDark,
-              border: primaryDark,
-              borderStyle: "solid",
-              borderWidth: "1px",
-            }} variant="outlined">Connect with me</Button>
+                bgcolor: primaryDark,
+              }}
+              variant="contained"
+            >
+              More of my work
+            </Button>
             <Button
               sx={{
-                bgcolor: primaryDark
-              }} variant="contained">Make appointment with me</Button>
+                bgcolor: primaryLight,
+                color: primaryDark,
+                border: primaryDark,
+                borderStyle: "solid",
+                borderWidth: "1px",
+              }}
+              variant="outlined"
+            >
+              Connect with me
+            </Button>
+            <Button
+              sx={{
+                bgcolor: primaryDark,
+              }}
+              variant="contained"
+            >
+              Make appointment with me
+            </Button>
           </Stack>
-
         </Box>
 
-        <Box maxWidth="lg"
+        <Box
+          maxWidth="lg"
           sx={{
             paddingLeft: 90,
-            m: 5
-          }}>
+            m: 5,
+          }}
+        >
           {/* <Carousel>
             {itemData.map((item, i) => (
               <div>
@@ -125,69 +133,6 @@ export default function TitlebarImageList() {
           </Carousel> */}
         </Box>
       </Container>
-    </main >
+    </main>
   );
 }
-
-const itemData = [
-  {
-    img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
-    title: "Breakfast",
-    author: "@bkristastucchio",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
-    title: "Burger",
-    author: "@rollelflex_graphy726",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
-    title: "Camera",
-    author: "@helloimnik",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
-    title: "Coffee",
-    author: "@nolanissac",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
-    title: "Hats",
-    author: "@hjrc33",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
-    title: "Honey",
-    author: "@arwinneil",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
-    title: "Basketball",
-    author: "@tjdragotta",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
-    title: "Fern",
-    author: "@katie_wasserman",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
-    title: "Mushrooms",
-    author: "@silverdalex",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
-    title: "Tomato basil",
-    author: "@shelleypauls",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
-    title: "Sea star",
-    author: "@peterlaster",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-    title: "Bike",
-    author: "@southside_customs",
-  },
-];

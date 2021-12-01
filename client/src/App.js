@@ -93,7 +93,7 @@ function App() {
         <Navbar totalItems={cart.total_items} />
         <Switch>
           <Route exact path="/">
-            <HomePage categories={categories} onAddToCart={handleAddToCart} />
+            <HomePage />
           </Route>
           <Route path="/login" component={Login} />
           <Route path="/search" component={SearchResults} />
@@ -123,36 +123,6 @@ function App() {
         <Footer />
       </Router>
     </>
-    // {/* </Router>
-    //   <Navbar />
-    //   <Switch>
-    //     <Route exact path="/" component={HomePage} />
-    //     <Route path="/login" component={Login} />
-    //     <Route path="/searchresults" component={SearchResults} />
-    //     <Route path="/profile" component={Profile} />
-    //     <Route path="/signup" component={SignUp} />
-    //     <Route path="/update" component={Update} />
-    //     {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
-    //   </Switch>
-    //   <Footer />
-    // </Router>
-    // <div className="App">
-    //   {/* <header className="App-header">
-    //   <img src={logo} className="App-logo" alt="logo" />
-    //   <p>
-    //     Hello
-    //   </p>
-    //   <a
-    //     className="App-link"
-    //     href="https://reactjs.org"
-    //     target="_blank"
-    //     rel="noopener noreferrer"
-    //   >
-    //     Learn React
-    //   </a>
-    // </header> */}
-    // </div> */}
-    // </>
   );
 }
 
